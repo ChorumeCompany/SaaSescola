@@ -1,0 +1,54 @@
+swagger: '2.0'
+securityDefinitions:
+  BearerAuth:
+    type: apiKey
+    name: Authorization
+    in: header
+
+info:
+  title: S.a.a.S Escolas
+  description: Serviço de teste da API
+  version: 1.0.0
+
+paths:
+  /authentication:
+    post:
+      tags:
+        - Authentication
+      summary: Realiza o login na Api
+      description: Realiza o login na API
+      operationId: LoginController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: Authentication
+          description: Login e senha
+          required: true
+          schema:
+            $ref: '#/definitions/Authentication'
+      responses:
+        202:
+          description: 'Login realizado com sucesso'
+        400:
+          description: 'Dados incorretos'
+        404:
+          description: 'Usuário não encontrado'
+        500:
+          description: 'Erro interno do servidor'
+      x-swagger-router-controller: 'login.controller'
+
+definitions:
+  Authentication:
+    type: object
+    properties:
+      login:
+        type: string
+        format: email
+        example: teste@teste.com.br
+      password:
+        type: string
+        format: password
+        example: senha1234
