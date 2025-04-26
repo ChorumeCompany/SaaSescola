@@ -1,4 +1,11 @@
-import { AutoIncrement, Column, DataType, PrimaryKey, Table, Model } from 'sequelize-typescript';
+import {
+  AutoIncrement,
+  Column,
+  DataType,
+  PrimaryKey,
+  Table,
+  Model,
+} from 'sequelize-typescript';
 
 export interface IUser {
   id: number;
@@ -10,6 +17,7 @@ export interface IUser {
   oldPassword: string;
   passwordExpires: Date;
   securityQuestion: string;
+  securityResponse: string;
   createdAt?: Date;
   updatedAt?: Date;
   deleteAt?: Date;
@@ -20,7 +28,7 @@ export interface IUser {
   timestamps: true,
   paranoid: true,
 })
-export class Users extends Model<IUser>{
+export class Users extends Model<IUser> {
   @PrimaryKey
   @AutoIncrement
   @Column({
@@ -59,24 +67,29 @@ export class Users extends Model<IUser>{
   })
   password: string;
 
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  oldPassword: string;
 
-@Column({
-  type: DataType.STRING,
-  allowNull: false,
-})
-oldPassword: string;
-
-@Column({
-  type: DataType.STRING,
-  allowNull: false,
-})
+  @Column({
+    type: DataType.DATE,
+    allowNull: false,
+  })
   passwordExpires: Date;
 
-@Column({
-  type: DataType.STRING,
-  allowNull: false,
-})
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
   securityQuestion: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  securityResponse: string;
 
   @Column({
     type: DataType.DATE,

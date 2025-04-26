@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
@@ -26,4 +26,3 @@ export const authenticateToken = (
     return res.status(403).json({ message: 'Token inválido ou expirado.' });
   }
 };
-

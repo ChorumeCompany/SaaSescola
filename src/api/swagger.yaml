@@ -17,7 +17,7 @@ paths:
         - Authentication
       summary: Realiza o login na Api
       description: Realiza o login na API
-      operationId: LoginController
+      operationId: loginController
       consumes:
         - application/json
       produces:
@@ -38,7 +38,37 @@ paths:
           description: 'Usuário não encontrado'
         500:
           description: 'Erro interno do servidor'
-      x-swagger-router-controller: 'login.controller'
+      x-swagger-router-controller: 'Login.Controller'
+  /saas/CreateUser:
+    post:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - User
+      summary: Cadastra o usuario no sistema
+      description: Cadastra o usuario no sistema
+      operationId: createUserController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: user
+          description: dados do usuario
+          required: true
+          schema:
+            $ref: '#/definitions/newUser'
+      responses:
+        201:
+          description: 'Usuario cadastrado'
+        400:
+          description: 'Dados incorretos'
+        404:
+          description: 'Dados não encontrados'
+        500:
+          description: 'Erro interno do servidor'
+
 
 definitions:
   Authentication:
@@ -52,3 +82,29 @@ definitions:
         type: string
         format: password
         example: senha1234
+  newUser:
+    type: object
+    properties:
+      name:
+        type: string
+        example: Jon Doe
+      cpf:
+        type: string
+        example: 11122233344
+      phone:
+        type: string
+        format: phone
+        example: 55 11 911111111
+      email:
+        type: string
+        format: email
+        example: teste@teste.com.br
+      password:
+        type: string
+        example: senha1234
+      securityQuestion:
+        type: string
+        example: Nome do seu primeiro cachorro
+      securityResponse:
+        type: string
+        example: Max

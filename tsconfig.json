@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "module": "esnext",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "useDefineForClassFields": false,

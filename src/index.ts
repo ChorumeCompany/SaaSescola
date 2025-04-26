@@ -1,4 +1,6 @@
-import express, { Application, NextFunction, Response, Request } from 'express';
+import 'reflect-metadata';
+import type { NextFunction, Request, Response, Application } from 'express';
+import express from 'express';
 import cors from 'cors';
 import { connectDB } from './database/database';
 import * as http from 'node:http';
@@ -8,25 +10,23 @@ import jsyaml from 'js-yaml';
 import swaggerUi from 'swagger-ui-express';
 import { controllers } from './routes/routes';
 import { authenticateToken } from './utils/authMiddleware';
+import { app } from './app';
 
+const port: string | 3000 = process.env.PORT || 3000;
+app.use(cors());
 
-
-const app: Application = express();
-const port: string | 3000  = process.env.PORT || 3000;
-app.use(cors())
-
-app.use(express.json())
+app.use(express.json());
 
 //Carregar o Swagger YAML
-const spectPath:string = path.join(__dirname, 'api/swagger.yaml')
-const spec:string = fs.readFileSync(spectPath, 'utf8');
-const swaggerDoc = jsyaml.load(spec) as { paths: { [key: string]: any } };
+const specPath: string = path.join(__dirname, 'api/swagger.yaml');
+const spec: string = fs.readFileSync(specPath, 'utf8');
+const swaggerDocs = jsyaml.load(spec) as { paths: { [key: string]: string } };
 
 //configurar o SwaggerUi
-app.use('/docs', swaggerUi.server, swaggerUi.setup(swaggerDoc))
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 //midleware do cors
-app.use((req: Request, res: Response, next: NextFunction) : void => {
+app.use((req: Request, res: Response, next: NextFunction): void => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
     'Access-Control-Allow-Headers',
@@ -39,37 +39,40 @@ app.use((req: Request, res: Response, next: NextFunction) : void => {
   next();
 });
 //Configuração do Bearer token
-app.use((req: Request, res: Response, next: NextFunction) : void => {
-  if(req.path.startsWith('/docs') || req.path === '/authentication'){
-    return next()
+app.use((req: Request, res: Response, next: NextFunction): void => {
+  if (req.path.startsWith('/docs') || req.path === '/authentication') {
+    return next();
   } else {
-    authenticateToken(req,res, next)
+    authenticateToken(req, res, next);
   }
-})
-
+});
 
 // configuração das rotas
 type SwaggerConfig = {
-  operationId: string,
-  [key: string]: any;
-}
+  operationId: string;
+  [key: string]: string;
+};
 
-const routes = Object.entries(swaggerDoc.paths).flatMap(([path, methods]) => {
+const routes = Object.entries(swaggerDocs.paths).flatMap(([path, methods]) => {
   return Object.entries(methods).map(([method, config]) => {
-    const typedConfig = config as SwaggerConfig;
-    return{
+    const typedConfig = config as unknown as SwaggerConfig;
+    return {
       path,
       method,
       operationId: typedConfig.operationId,
       params: typedConfig.parameters,
-    }
-  })
-})
+    };
+  });
+});
 
 routes.forEach(({ path, method, operationId, params }): void => {
-  const handler = controllers[operationId];
+  let handler;
+  handler = controllers[operationId as keyof typeof controllers];
   if (handler) {
-    if (params?.some((param): boolean => param.in === 'path')) {
+    if (
+      Array.isArray(params) &&
+      params.some((param): boolean => param.in === 'path')
+    ) {
       params.forEach((param): void => {
         if (param.in === 'path') {
           const correctedPath: string = path.replace(
@@ -77,21 +80,27 @@ routes.forEach(({ path, method, operationId, params }): void => {
             `:${param.name}`,
           );
           if (operationId === 'postClientDocumentController') {
-            app[method](correctedPath, handler);
+            (app as Application)[method as keyof Application](
+              correctedPath,
+              handler,
+            );
           } else {
-            app[method](correctedPath, handler);
+            (app as Application)[method as keyof Application](
+              correctedPath,
+              handler,
+            );
           }
         }
       });
     } else {
-      app[method](path, handler);
+      (app as Application)[method as keyof Application](path, handler);
     }
   } else {
     console.error(`Controller não encontrado para operationId: ${operationId}`);
   }
 });
 
-await connectDB();
+connectDB().then((): void => {});
 
 http.createServer(app).listen(port, (): void => {
   console.info(`🚀 Server is running on http://localhost:${port}`);

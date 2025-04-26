@@ -1,85 +1,141 @@
-export default {
-  globals: {
-    describe: true,
-    before: true,
-    it: true,
+import js from '@eslint/js';
+import prettierPlugin from 'eslint-plugin-prettier';
+import tsParser from '@typescript-eslint/parser';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import globals from 'globals';
+
+export default [
+  {
+    // Configuração base para JavaScript
+    files: ['**/*.js'],
+    ...js.configs.recommended,
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+      },
+      parserOptions: {
+        ecmaVersion: 2021,
+        sourceType: 'module',
+      },
+    },
+    plugins: {
+      prettier: prettierPlugin,
+    },
+    rules: {
+      // Regras base do JavaScript
+      'arrow-body-style': ['error', 'as-needed'],
+      'prefer-arrow-callback': [
+        'error',
+        {
+          allowNamedFunctions: true,
+          allowUnboundThis: false,
+        },
+      ],
+      'no-useless-return': 'error',
+      'prefer-template': 'error',
+      'no-template-curly-in-string': 'error',
+      curly: ['error', 'multi-or-nest'],
+      'function-call-argument-newline': ['error', 'consistent'],
+      'func-call-spacing': ['error', 'never'],
+      'no-unused-expressions': 'warn',
+    },
   },
-  env: {
-    commonjs: true,
-    node: true,
-    jest: true,
-  },
-  extends: [
-    'plugin:prettier/recommended',
-    'prettier',
-  ],
-  plugins: ['prettier'],
-  parser: '@babel/eslint-parser',
-  parserOptions: {
-    sourceType: 'module',
-    ecmaVersion: 12,
-  },
-  rules: {
-    '@typescript-eslint/naming-convention': [
-      'error',
-      {
-        selector: ['variable', 'function'],
-        format: ['camelCase'],
-        leadingUnderscore: 'allow',
+  {
+    // Configuração para TypeScript
+    files: ['**/*.ts', '**/*.tsx'],
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+    },
+    languageOptions: {
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+        describe: true,
+        before: true,
+        it: true,
       },
-      {
-        selector: ['class', 'interface', 'typeAlias', 'typeParameter'],
-        format: ['PascalCase'],
-      },
-      {
-        selector: ['variable', 'enum'],
-        modifiers: ['const'],
-        format: ['UPPER_CASE'],
-      },
-      {
-        selector: ['method'],
-        modifiers: ['private'],
-        format: ['camelCase'],
-        leadingUnderscore: 'require',
-      },
-      {
-        selector: ['property'],
-        format: ['snake_case'],
-      },
-    ],
-    'arrow-parens': 'off',
-    'arrow-body-style': ['error', 'as-needed'],
-    'prefer-arrow-callback': [
-      'error',
-      {
-        allowNamedFunctions: true,
-        allowUnboundThis: false,
-      },
-    ],
-    'array-element-newline': [
-      'error',
-      {
-        ArrayExpression: 'consistent',
-        ArrayPattern: {
-          minItems: 50,
+      parser: tsParser,
+      parserOptions: {
+        project: './tsconfig.json',
+        ecmaFeatures: {
+          jsx: true,
         },
       },
-    ],
-    'prettier/prettier': [
-      'error',
-      {
-        endOfLine: 'auto',
-      },
-    ],
-    'no-useless-return': 'error',
-    'prefer-template': 'error',
-    'no-template-curly-in-string': 'error',
-    curly: ['error', 'multi'],
-    'function-call-argument-newline': ['error', 'consistent'],
-    'func-call-spacing': ['error', 'never'],
-    'no-unused-expressions': 'warn',
-    'no-unused-vars': 'warn',
-    '@typescript-eslint/explicit-function-return-type': 'error',
-    '@typescript-eslint/no-explicit-any': 'error',
+    },
+    rules: {
+      // Regras do TypeScript
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+      ],
+      '@typescript-eslint/naming-convention': [
+        'error',
+        {
+          selector: ['variable', 'function'],
+          format: ['camelCase'],
+          leadingUnderscore: 'allow',
+        },
+        {
+          selector: ['class', 'interface', 'typeAlias', 'typeParameter'],
+          format: ['PascalCase'],
+        },
+        {
+          selector: [ 'enumMember'],
+          modifiers: ['const'],
+          format: ['UPPER_CASE'],
+        },
+        {
+          selector: ['method'],
+          modifiers: ['private'],
+          format: ['camelCase'],
+          leadingUnderscore: 'require',
+        },
+        {
+          selector: ['property'],
+          format: ['camelCase', 'PascalCase', 'snake_case'],
+        },
+      ],
+      '@typescript-eslint/explicit-function-return-type': [
+        'error',
+        {
+          allowExpressions: true,
+          allowHigherOrderFunctions: true,
+        },
+      ],
+      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/consistent-type-imports': 'error',
+    },
   },
-};
+  {
+    // Configuração do Prettier (aplica a todos os arquivos)
+    files: ['**/*.{js,ts,tsx}'],
+    plugins: {
+      prettier: prettierPlugin,
+    },
+    rules: {
+      'prettier/prettier': [
+        'error',
+        {
+          "tabWidth": 2,
+          "useTabs": false,
+          "printWidth": 80,
+          "singleQuote": true,
+          "trailingComma": "all",
+          "arrowParens": "always",
+          "semi": true,
+          "endOfLine": "auto",
+          "overrides": [
+            {
+              "files": "*.yaml",
+              "options": {
+                "bracketSameLine": false,
+                "proseWrap": "always"
+              }
+            }
+          ]
+        }
+      ],
+    },
+  },
+];
