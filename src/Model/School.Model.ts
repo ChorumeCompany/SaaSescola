@@ -18,12 +18,15 @@ export interface ISchool {
   instagram: string;
   whatsapp: string;
   esferaAdministrativa: string;
+  valorMensalidade: number;
   situacaoFuncionamento: string;
   qntSalas: number;
   qntAlunos: number;
   qntProfessores: number;
   qntTurmas: number;
   qntFuncionarios: number;
+  sobre: string;
+  //endereço
   cep: string;
   logradouro: string;
   numero: string;
@@ -146,6 +149,12 @@ export class School extends Model<ISchool> {
   esferaAdministrativa: string;
 
   @Column({
+    type: DataType.DECIMAL,
+    allowNull: false,
+  })
+  valorMensalidade: number;
+
+  @Column({
     type: DataType.STRING,
     allowNull: false,
   })
@@ -180,6 +189,12 @@ export class School extends Model<ISchool> {
     allowNull: false,
   })
   qntFuncionarios: number;
+
+  @Column({
+    type: DataType.TEXT,
+    allowNull: false,
+  })
+  sobre: string;
 
   @Column({
     type: DataType.STRING,

@@ -108,3 +108,10 @@ definitions:
       securityResponse:
         type: string
         example: Max
+      roleEnum:
+        type: string
+        enum:
+          - PS
+          - ES
+          - US
+

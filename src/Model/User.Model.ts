@@ -9,7 +9,7 @@ import {
 
 export interface IUser {
   id: number;
-  cpf: string;
+  document: string;
   name: string;
   phone: string;
   email: string;
@@ -18,6 +18,7 @@ export interface IUser {
   passwordExpires: Date;
   securityQuestion: string;
   securityResponse: string;
+  roleEnum: string;
   createdAt?: Date;
   updatedAt?: Date;
   deleteAt?: Date;
@@ -41,7 +42,7 @@ export class Users extends Model<IUser> {
     type: DataType.STRING,
     allowNull: false,
   })
-  cpf: string;
+  document: string;
 
   @Column({
     type: DataType.STRING,
@@ -90,6 +91,12 @@ export class Users extends Model<IUser> {
     allowNull: false,
   })
   securityResponse: string;
+
+  @Column({
+    type: DataType.ENUM,
+    allowNull: false,
+  })
+  roleEnum: string;
 
   @Column({
     type: DataType.DATE,
