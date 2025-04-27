@@ -35,3 +35,51 @@ export async function createUserRepository(user: Users): Promise<Users> {
     throw error;
   }
 }
+export async function getAllUsersRepository(): Promise<Users[]> {
+  try {
+    return await Users.findAll();
+  } catch (error) {
+    console.error('Erro ao buscar os usuarios', error);
+    throw error;
+  }
+}
+export async function getUserByIdRepository(id: number): Promise<Users> {
+  try {
+    return await Users.findByPk(id);
+  } catch (error) {
+    console.error('Erro ao buscar os usuarios', error);
+  }
+}
+export async function updateUserRepository(
+  id: number,
+  user: Users,
+): Promise<Users> {
+  const t = await sequelize.transaction();
+  try {
+    const existingUser = await Users.findByPk(id);
+    if (!existingUser) {
+      return null;
+    }
+    await existingUser.update(user, { transaction: t });
+    await t.commit();
+    return existingUser;
+  } catch (error) {
+    await t.rollback();
+    console.error('Erro ao atualizar os usuarios', error);
+    throw error;
+  }
+}
+export async function deleteUserRepository(id: number): Promise<void> {
+  const t = await sequelize.transaction();
+  try {
+    const existingUser = await Users.findByPk(id);
+    if (!existingUser) {
+      return null;
+    }
+    return await existingUser.destroy({ transaction: t });
+  } catch (error) {
+    await t.rollback();
+    console.error('Erro ao deletar os usuarios', error);
+    throw error;
+  }
+}

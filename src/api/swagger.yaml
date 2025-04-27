@@ -41,7 +41,7 @@ paths:
         500:
           description: 'Erro interno do servidor'
       x-swagger-router-controller: 'Login.Controller'
-  /saas/CreateUser:
+  /saas/user/CreateUser:
     post:
       security:
         - BearerAuth: [ ]
@@ -70,6 +70,118 @@ paths:
           description: 'Dados não encontrados'
         500:
           description: 'Erro interno do servidor'
+      x-swagger-router-controller: 'Login.Controller'
+  /saas/user/getAllUser:
+    get:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - User
+      summary: Busca todos os usuarios cadastrados no banco de dados
+      description: Busca todos os usuarios cadastrados no banco de dados
+      operationId: getAllUsersController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Ok
+        404:
+          description: Dados não encontrados
+        500:
+          description: Erro interno do Servidor
+      x-swagger-router-controller: 'Login.Controller'
+  /saas/user/{id}:
+    get:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - User
+      summary: Busca o usuario pelo id fornecido
+      description: Busca o usuario pelo id fornecido
+      operationId: getUserByIdController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: Id da escola
+          required: true
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Dados incorretos
+        404:
+          description: Dados inválidos
+        500:
+          description: Erro Interno do Servidor
+      x-swagger-router-controller: 'Login.Controller'
+    patch:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - User
+      summary: Atualiza os dados do usuario pelo id fornecido
+      description: Atualiza os dados do usuario pelo id fornecido
+      operationId: updateUserController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: Id da escola
+          required: true
+        - in: body
+          name: user
+          description: dados do usuario
+          required: true
+          schema:
+            $ref: '#/definitions/newUser'
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Dados incorretos
+        404:
+          description: Dados inválidos
+        500:
+          description: Erro Interno do Servidor
+      x-swagger-router-controller: 'Login.Controller'
+    delete:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - User
+      summary: Deleta o usuario pelo id fornecido
+      description: Deleta o usuario pelo id fornecido
+      operationId: deleteUserController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: Id da escola
+          required: true
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Dados incorretos
+        404:
+          description: Dados inválidos
+        500:
+          description: Erro Interno do Servidor
       x-swagger-router-controller: 'Login.Controller'
   /saas/school/createSchool:
     post:
@@ -449,6 +561,148 @@ paths:
         500:
           description: Erro interno do servidor
       x-swagger-router-controller: 'School.Controller'
+  /saas/profissionais/createProfissional:
+    post:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Profissional
+      summary: Cria um profissional no banco de dados
+      description: Cria um profissional no banco de dados
+      operationId: createProfissonaisController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: profissional
+          description: dados do profissional que sera cadastrado
+          required: true
+          schema:
+            $ref: '#/definitions/Profissionais'
+      responses:
+        201:
+          description: Usuario cadastrado
+        400:
+          description: dados incorretos
+        404:
+          description: Nao encontrado
+        500:
+          description: Erro interno do servidor
+      x-swagger-router-controller: Profissional.Controller
+  /saas/profissionais/getAllProfissionais:
+    get:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Profissional
+      summary: busca todos os profissionais cadastrados no banco de dados
+      description: busca todos os profissionais cadastrados no banco de dados
+      operationId: getAllProfissionaisController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Ok
+        404:
+          description: Não encontrado
+        500:
+          description: Erro interno do servidor
+      x-swagger-router-controller: Profissional.Controller
+  /saas/profissionais/{id}:
+    get:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Profissional
+      summary: Busca o profissional pelo id
+      description: Busca o profissional pelo id
+      operationId: getProfissionalByIdController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+          description: id do profissional
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Dados invalidos
+        404:
+          description: Não encontrado
+        500:
+          description: Erro interno do servidor
+      x-swagger-router-controller: Profissional.Controller
+    patch:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Profissional
+      summary: Atualiza os dados do profissional baseado no id informado
+      description: Atualiza os dados do profissional baseado no id informado
+      operationId: updateProfissionalByIdController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+          description: id do profissional
+        - in: body
+          name: profissional
+          description: dados do profissional que sera cadastrado
+          required: true
+          schema:
+            $ref: '#/definitions/Profissionais'
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Dados invalidos
+        404:
+          description: Não encontrado
+        500:
+          description: Erro interno do servidor
+      x-swagger-router-controller: Profissional.Controller
+    delete:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - Profissional
+      summary: Deleta o profissional baseado no id informado
+      description: Deleta o profissional baseado no id informado
+      operationId: deleteProfissionalController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          required: true
+          description: id do profissional
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Dados invalidos
+        404:
+          description: Não encontrado
+        500:
+          description: Erro interno do servidor
+      x-swagger-router-controller: Profissional.Controller
 
 definitions:
   Authentication:
@@ -549,8 +803,6 @@ definitions:
       sobre:
         type: string
         example: "Escola fundada em 1980 com foco em educação de qualidade"
-
-      # Address
       cep:
         type: string
         example: "01234-567"
@@ -572,8 +824,6 @@ definitions:
       estado:
         type: string
         example: "SP"
-
-      # Infrastructure
       temQuadraCoberta:
         type: boolean
         example: true
@@ -667,8 +917,6 @@ definitions:
       ofereceAlimentacao:
         type: boolean
         example: true
-
-      # Accessibility
       acessoCadeirante:
         type: boolean
         example: true
@@ -684,13 +932,90 @@ definitions:
       salaDescompressao:
         type: boolean
         example: false
-
-      # Staff
       pessoaDeLibras:
         type: boolean
         example: true
       acompanhanteParaAlunos:
         type: boolean
         example: false
-
+  Profissionais:
+    type: object
+    properties:
+      name:
+        type: string
+        example: "Dr. João Silva"
+        description: "Nome completo do profissional"
+      document:
+        type: string
+        example: "11122233344"
+        description: "CPF ou CNPJ da pessoa que vai atender"
+      imagem:
+        type: string
+        example: "https://exemplo.com/foto.jpg"
+        description: "URL da imagem do profissional"
+      site:
+        type: string
+        example: "https://drjoaosilva.com.br"
+        description: "Site pessoal/profissional"
+      instagram:
+        type: string
+        example: "@drjoaosilva"
+        description: "Perfil no Instagram"
+      telefone:
+        type: string
+        example: "(11) 99999-9999"
+        description: "Telefone para contato"
+      whatsapp:
+        type: string
+        example: "(11) 99999-9999"
+        description: "Número do WhatsApp"
+      email:
+        type: string
+        format: email
+        example: "contato@drjoaosilva.com.br"
+        description: "E-mail profissional"
+      crm:
+        type: string
+        example: "CRM/SP 123456"
+        description: "Registro no Conselho Regional de Medicina (para médicos)"
+      crp:
+        type: string
+        example: "CRP/SP 12345"
+        description: "Registro no Conselho Regional de Psicologia (para psicólogos)"
+      categoria:
+        type: string
+        example: "Psiquiatra"
+        description: "Categoria principal do profissional"
+      categoria2:
+        type: string
+        example: "Terapeuta"
+        description: "Categoria secundária (opcional)"
+      localdeAtendimento:
+        type: string
+        example: "Consultório particular"
+        description: "Local onde o profissional atende"
+      valorConsulta:
+        type: number
+        format: float
+        example: 350.00
+        description: "Valor da consulta"
+      sobreMim:
+        type: string
+        example: "Médico psiquiatra com 10 anos de experiência..."
+        description: "Texto descritivo sobre o profissional"
+      createdAt:
+        type: string
+        format: date-time
+        example: "2023-01-01T12:00:00Z"
+        readOnly: true
+      updatedAt:
+        type: string
+        format: date-time
+        example: "2023-01-02T10:30:00Z"
+        readOnly: true
+      deletedAt:
+        type: string
+        format: date-time
+        example: "2023-01-03T15:45:00Z"
+        readOnly: true
 

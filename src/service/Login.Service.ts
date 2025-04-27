@@ -3,13 +3,18 @@ import {
   Created,
   InternalServerError,
   NotFound,
+  Ok,
   Unauthorized,
 } from '../utils/mensagens-ptbr';
 import * as bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import {
   createUserRepository,
+  deleteUserRepository,
+  getAllUsersRepository,
   getLoginRepository,
+  getUserByIdRepository,
+  updateUserRepository,
 } from '../Repository/Login.Repository';
 import type { Users } from '../Model/User.Model';
 
@@ -57,7 +62,7 @@ export class LoginService {
       };
     }
   }
-  async createUser(user: Users) {
+  async createUserRepository(user: Users) {
     try {
       let passwordHash: string;
       passwordHash = await bcrypt.hash(user.password, 10);
@@ -78,6 +83,52 @@ export class LoginService {
     } catch (error) {
       console.error('Erro ao criar usuário:', error);
       throw new Error('Erro ao criar usuário');
+    }
+  }
+  async getAllUserService() {
+    try {
+      const allUsers = await getAllUsersRepository();
+      if (!allUsers) {
+        return { NotFound };
+      }
+
+      return { Ok, allUsers };
+    } catch (error) {
+      console.error('Erro ao buscar os usuarios', error);
+      return { error, InternalServerError };
+    }
+  }
+  static async getUserByIdService(id: number) {
+    try {
+      const user = await getUserByIdRepository(id);
+      if (!user) {
+        return { NotFound };
+      }
+      return { Ok, user };
+    } catch (error) {
+      console.error('Erro ao buscar os usuarios', error);
+      return { error, InternalServerError };
+    }
+  }
+  async updateUserService(id: number, user: Users) {
+    try {
+      const updateUser = await updateUserRepository(id, user);
+      if (!updateUser) {
+        return { NotFound };
+      }
+      return { Ok, updateUser };
+    } catch (error) {
+      console.error('Erro ao atualizar os usuarios', error);
+      return { error, InternalServerError };
+    }
+  }
+  async deleteUserService(id: number) {
+    try {
+      const deleteUser = await deleteUserRepository(id);
+      return { Ok, deleteUser };
+    } catch (error) {
+      console.error('Erro ao deletar os usuarios', error);
+      return { error, InternalServerError };
     }
   }
 }

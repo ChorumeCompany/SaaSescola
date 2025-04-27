@@ -71,7 +71,6 @@ export async function getAllSchoolController(req, res) {
       if (req.query[key]) acc[key] = req.query[key];
       return acc;
     }, {});
-    console.log(filter);
     const schools = await schoolService.getAllSchoolService(filter);
 
     return writeJson(res, schools);
@@ -111,7 +110,7 @@ export async function deleteSchoolbyIdController(req, res) {
 
     const deletedSchool = await schoolService.deletedSchoolService(id);
 
-    return writeJson(res, deletedSchool);
+    return writeJson(res, deletedSchool.Ok);
   } catch (error) {
     console.error('Erro ao deletar a escola', error);
     return writeJson(res, InternalServerError);
