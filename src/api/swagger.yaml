@@ -32,6 +32,8 @@ paths:
       responses:
         202:
           description: 'Login realizado com sucesso'
+        200:
+          description: New response
         400:
           description: 'Dados incorretos'
         404:
@@ -68,7 +70,385 @@ paths:
           description: 'Dados não encontrados'
         500:
           description: 'Erro interno do servidor'
-
+      x-swagger-router-controller: 'Login.Controller'
+  /saas/school/createSchool:
+    post:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - School
+      summary: Cadastra uma escola no banco de dados
+      description: Cadastra uma empresa no banco de dados
+      operationId: postNewSchoolController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: school
+          description: dados da escola
+          required: true
+          schema:
+            $ref: '#/definitions/School'
+      responses:
+        201:
+          description: 'Escola cadastrada com sucesso'
+        400:
+          description: 'Dados incorretos'
+        404:
+          description: 'Dados não encontrados'
+        500:
+          description: 'Erro interno do servidor'
+      x-swagger-router-controller: 'School.Controller'
+  /saas/school/getAllSchools:
+    get:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - School
+      summary: Busca todas as escolas no banco de dados
+      description: Busca todas as escolas no banco de dados
+      operationId: getAllSchoolController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: name
+          type: string
+          description: Filtro por nome da instituição
+          required: false
+        - in: query
+          name: esferaAdministrativa
+          type: string
+          description: Filtro por esfera administrativa
+          required: false
+        - in: query
+          name: valorMensalidade
+          type: number
+          description: Filtro por valor de mensalidade
+          required: false
+        - in: query
+          name: situacaoFuncionamento
+          type: string
+          description: Filtro por situação de funcionamento
+          required: false
+        - in: query
+          name: qntSalas
+          type: number
+          description: Filtro por quantidade de salas
+          required: false
+        - in: query
+          name: qntAlunos
+          type: number
+          description: Filtro por quantidade de alunos
+          required: false
+        - in: query
+          name: qntProfessores
+          type: number
+          description: Filtro por quantidade de professores
+          required: false
+        - in: query
+          name: qntTurmas
+          type: number
+          description: Filtro por quantidade de turmas
+          required: false
+        - in: query
+          name: qntFuncionarios
+          type: number
+          description: Filtro por quantidade de funcionários
+          required: false
+        - in: query
+          name: temQuadraCoberta
+          type: boolean
+          description: Filtro por existência de quadra coberta
+          required: false
+        - in: query
+          name: temQuadraNaoCoberta
+          type: boolean
+          description: Filtro por existência de quadra não coberta
+          required: false
+        - in: query
+          name: temInternet
+          type: boolean
+          description: Filtro por existência de internet
+          required: false
+        - in: query
+          name: temBandaLarga
+          type: boolean
+          description: Filtro por existência de banda larga
+          required: false
+        - in: query
+          name: temLaboratorioInformatica
+          type: boolean
+          description: Filtro por existência de laboratório de informática
+          required: false
+        - in: query
+          name: temLaboratorioCiencia
+          type: boolean
+          description: Filtro por existência de laboratório de ciências
+          required: false
+        - in: query
+          name: temRefeitorio
+          type: boolean
+          description: Filtro por existência de refeitório
+          required: false
+        - in: query
+          name: temAuditorio
+          type: boolean
+          description: Filtro por existência de auditório
+          required: false
+        - in: query
+          name: temDespensa
+          type: boolean
+          description: Filtro por existência de despensa
+          required: false
+        - in: query
+          name: temAumoxarifado
+          type: boolean
+          description: Filtro por existência de almoxarifado
+          required: false
+        - in: query
+          name: temPatioCoberto
+          type: boolean
+          description: Filtro por existência de pátio coberto
+          required: false
+        - in: query
+          name: temPatioNaoCoberto
+          type: boolean
+          description: Filtro por existência de pátio não coberto
+          required: false
+        - in: query
+          name: temPatioInfantil
+          type: boolean
+          description: Filtro por existência de pátio infantil
+          required: false
+        - in: query
+          name: temCozinha
+          type: boolean
+          description: Filtro por existência de cozinha
+          required: false
+        - in: query
+          name: temBiblioteca
+          type: boolean
+          description: Filtro por existência de biblioteca
+          required: false
+        - in: query
+          name: temSanitarioNoPredio
+          type: boolean
+          description: Filtro por existência de sanitário no prédio
+          required: false
+        - in: query
+          name: temSanitarioForaPredio
+          type: boolean
+          description: Filtro por existência de sanitário fora do prédio
+          required: false
+        - in: query
+          name: temBercario
+          type: boolean
+          description: Filtro por existência de berçário
+          required: false
+        - in: query
+          name: temSalaLeitura
+          type: boolean
+          description: Filtro por existência de sala de leitura
+          required: false
+        - in: query
+          name: temAreaVerde
+          type: boolean
+          description: Filtro por existência de área verde
+          required: false
+        - in: query
+          name: temAguaFiltrada
+          type: boolean
+          description: Filtro por existência de água filtrada
+          required: false
+        - in: query
+          name: temCreche
+          type: boolean
+          description: Filtro por existência de creche
+          required: false
+        - in: query
+          name: temEnsinoFundamental
+          type: boolean
+          description: Filtro por existência de ensino fundamental
+          required: false
+        - in: query
+          name: temEnsinoMedio
+          type: boolean
+          description: Filtro por existência de ensino médio
+          required: false
+        - in: query
+          name: temEnsinoMedioNormal
+          type: boolean
+          description: Filtro por existência de ensino médio normal
+          required: false
+        - in: query
+          name: temEnsinoMedioProfissional
+          type: boolean
+          description: Filtro por existência de ensino médio profissional
+          required: false
+        - in: query
+          name: temEnsinoMedioIntegrado
+          type: boolean
+          description: Filtro por existência de ensino médio integrado
+          required: false
+        - in: query
+          name: temEducacaoJovemAdulto
+          type: boolean
+          description: Filtro por existência de educação de jovens e adultos
+          required: false
+        - in: query
+          name: temEducacaoIndigena
+          type: boolean
+          description: Filtro por existência de educação indígena
+          required: false
+        - in: query
+          name: banheiroTemChuveiro
+          type: boolean
+          description: Filtro por existência de chuveiro no banheiro
+          required: false
+        - in: query
+          name: ofereceAlimentacao
+          type: boolean
+          description: Filtro por oferta de alimentação
+          required: false
+        - in: query
+          name: acessoCadeirante
+          type: boolean
+          description: Filtro por acessibilidade para cadeirantes
+          required: false
+        - in: query
+          name: pisoTatil
+          type: boolean
+          description: Filtro por existência de piso tátil
+          required: false
+        - in: query
+          name: banheiroAcessivel
+          type: boolean
+          description: Filtro por existência de banheiro acessível
+          required: false
+        - in: query
+          name: elevador
+          type: boolean
+          description: Filtro por existência de elevador
+          required: false
+        - in: query
+          name: salaDescompressao
+          type: boolean
+          description: Filtro por existência de sala de descompressão
+          required: false
+        - in: query
+          name: pessoaDeLibras
+          type: boolean
+          description: Filtro por existência de pessoa de libras
+          required: false
+        - in: query
+          name: acompanhanteParaAlunos
+          type: boolean
+          description: Filtro por existência de acompanhante para alunos
+          required: false
+      responses:
+        200:
+          description: 'Ok'
+        404:
+          description: 'Dados não encontrado'
+        500:
+          description: 'Erro interno do servidor'
+      x-swagger-router-controller: 'School.Controller'
+  /saas/school/{id}:
+    get:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - School
+      summary: Busca as escolas no banco de dados com ou sem filtro
+      description: Busca as escolas no banco de dados com ou sem filtro
+      operationId: getSchoolByIdController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: Id da escola
+          required: true
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Dados incorretos
+        404:
+          description: Dados não encontrados
+        500:
+          description: Erro interno do servidor
+      x-swagger-router-controller: 'School.Controller'
+    patch:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - School
+      summary: Atualiza os dados da escola com o id informado
+      description: Atualiza os dados da escola com o id informado
+      operationId: updateSchoolbyIdController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: Id da escola
+          required: true
+        - in: body
+          name: school
+          description: dados da escola
+          required: true
+          schema:
+            $ref: '#/definitions/School'
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Dados incorretos
+        404:
+          description: Dados não encontrados
+        500:
+          description: Erro interno do servidor
+      x-swagger-router-controller: 'School.Controller'
+    delete:
+      security:
+        - BearerAuth: [ ]
+      tags:
+        - School
+      summary: Deleta a escola do id informado
+      description: Deleta a escola do id informado
+      operationId: deleteSchoolbyIdController
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          type: integer
+          description: Id da escola
+          required: true
+      responses:
+        200:
+          description: Ok
+        400:
+          description: Dados incorretos
+        404:
+          description: Dados não encontrados
+        500:
+          description: Erro interno do servidor
+      x-swagger-router-controller: 'School.Controller'
 
 definitions:
   Authentication:
@@ -88,7 +468,7 @@ definitions:
       name:
         type: string
         example: Jon Doe
-      cpf:
+      document:
         type: string
         example: 11122233344
       phone:
@@ -114,4 +494,203 @@ definitions:
           - PS
           - ES
           - US
+  School:
+    type: object
+    properties:
+      name:
+        type: string
+        example: "Escola Modelo"
+      telefone:
+        type: string
+        example: "(11) 99999-9999"
+      email:
+        type: string
+        format: email
+        example: "contato@escolamodelo.com.br"
+      cnpj:
+        type: string
+        example: "12.345.678/0001-90"
+      representante:
+        type: string
+        example: "Maria da Silva"
+      site:
+        type: string
+        example: "www.escolamodelo.com.br"
+      instagram:
+        type: string
+        example: "@escolamodelo"
+      whatsapp:
+        type: string
+        example: "(11) 99999-9999"
+      esferaAdministrativa:
+        type: string
+        example: "Municipal"
+      valorMensalidade:
+        type: number
+        example: 1200.50
+      situacaoFuncionamento:
+        type: string
+        example: "Ativa"
+      qntSalas:
+        type: number
+        example: 20
+      qntAlunos:
+        type: number
+        example: 500
+      qntProfessores:
+        type: number
+        example: 30
+      qntTurmas:
+        type: number
+        example: 25
+      qntFuncionarios:
+        type: number
+        example: 15
+      sobre:
+        type: string
+        example: "Escola fundada em 1980 com foco em educação de qualidade"
+
+      # Address
+      cep:
+        type: string
+        example: "01234-567"
+      logradouro:
+        type: string
+        example: "Rua das Flores"
+      numero:
+        type: string
+        example: "123"
+      complemento:
+        type: string
+        example: "Sala 1"
+      bairro:
+        type: string
+        example: "Centro"
+      cidade:
+        type: string
+        example: "São Paulo"
+      estado:
+        type: string
+        example: "SP"
+
+      # Infrastructure
+      temQuadraCoberta:
+        type: boolean
+        example: true
+      temQuadraNaoCoberta:
+        type: boolean
+        example: false
+      temInternet:
+        type: boolean
+        example: true
+      temBandaLarga:
+        type: boolean
+        example: true
+      temLaboratorioInformatica:
+        type: boolean
+        example: true
+      temLaboratorioCiencia:
+        type: boolean
+        example: true
+      temRefeitorio:
+        type: boolean
+        example: true
+      temAuditorio:
+        type: boolean
+        example: false
+      temDespensa:
+        type: boolean
+        example: true
+      temAumoxarifado:
+        type: boolean
+        example: true
+      temPatioCoberto:
+        type: boolean
+        example: true
+      temPatioNaoCoberto:
+        type: boolean
+        example: true
+      temPatioInfantil:
+        type: boolean
+        example: false
+      temCozinha:
+        type: boolean
+        example: true
+      temBiblioteca:
+        type: boolean
+        example: true
+      temSanitarioNoPredio:
+        type: boolean
+        example: true
+      temSanitarioForaPredio:
+        type: boolean
+        example: false
+      temBercario:
+        type: boolean
+        example: false
+      temSalaLeitura:
+        type: boolean
+        example: true
+      temAreaVerde:
+        type: boolean
+        example: true
+      temAguaFiltrada:
+        type: boolean
+        example: true
+      temCreche:
+        type: boolean
+        example: false
+      temEnsinoFundamental:
+        type: boolean
+        example: true
+      temEnsinoMedio:
+        type: boolean
+        example: true
+      temEnsinoMedioNormal:
+        type: boolean
+        example: false
+      temEnsinoMedioProfissional:
+        type: boolean
+        example: true
+      temEnsinoMedioIntegrado:
+        type: boolean
+        example: false
+      temEducacaoJovemAdulto:
+        type: boolean
+        example: true
+      temEducacaoIndigena:
+        type: boolean
+        example: false
+      banheiroTemChuveiro:
+        type: boolean
+        example: true
+      ofereceAlimentacao:
+        type: boolean
+        example: true
+
+      # Accessibility
+      acessoCadeirante:
+        type: boolean
+        example: true
+      pisoTatil:
+        type: boolean
+        example: true
+      banheiroAcessivel:
+        type: boolean
+        example: true
+      elevador:
+        type: boolean
+        example: false
+      salaDescompressao:
+        type: boolean
+        example: false
+
+      # Staff
+      pessoaDeLibras:
+        type: boolean
+        example: true
+      acompanhanteParaAlunos:
+        type: boolean
+        example: false
+
 

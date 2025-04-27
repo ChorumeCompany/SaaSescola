@@ -37,9 +37,9 @@ export interface ISchool {
   //infraestrutura
   temQuadraCoberta: boolean;
   temQuadraNaoCoberta: boolean;
-  temInternt: boolean;
+  temInternet: boolean;
   temBandaLarga: boolean;
-  temLaboratioInformatica: boolean;
+  temLaboratorioInformatica: boolean;
   temLaboratorioCiencia: boolean;
   temRefeitorio: boolean;
   temAuditorio: boolean;
@@ -50,7 +50,7 @@ export interface ISchool {
   temPatioInfantil: boolean;
   temCozinha: boolean;
   temBiblioteca: boolean;
-  temSanitarionoPredio: boolean;
+  temSanitarioNoPredio: boolean;
   temSanitarioForaPredio: boolean;
   temBercario: boolean;
   temSalaLeitura: boolean;
@@ -69,7 +69,7 @@ export interface ISchool {
   //acessibilidade
   acessoCadeirante: boolean;
   pisoTatil: boolean;
-  BanheiroAcessivel: boolean;
+  banheiroAcessivel: boolean;
   elevador: boolean;
   salaDescompressao: boolean;
   //staff
@@ -149,12 +149,6 @@ export class School extends Model<ISchool> {
   esferaAdministrativa: string;
 
   @Column({
-    type: DataType.DECIMAL,
-    allowNull: false,
-  })
-  valorMensalidade: number;
-
-  @Column({
     type: DataType.STRING,
     allowNull: false,
   })
@@ -189,12 +183,6 @@ export class School extends Model<ISchool> {
     allowNull: false,
   })
   qntFuncionarios: number;
-
-  @Column({
-    type: DataType.TEXT,
-    allowNull: false,
-  })
-  sobre: string;
 
   @Column({
     type: DataType.STRING,
@@ -258,7 +246,7 @@ export class School extends Model<ISchool> {
     allowNull: false,
     defaultValue: false,
   })
-  temInternt: boolean;
+  temInternet: boolean;
 
   @Column({
     type: DataType.BOOLEAN,
@@ -272,7 +260,7 @@ export class School extends Model<ISchool> {
     allowNull: false,
     defaultValue: false,
   })
-  temLaboratioInformatica: boolean;
+  temLaboratorioInformatica: boolean;
 
   @Column({
     type: DataType.BOOLEAN,
@@ -349,7 +337,7 @@ export class School extends Model<ISchool> {
     allowNull: false,
     defaultValue: false,
   })
-  temSanitarionoPredio: boolean;
+  temSanitarioNoPredio: boolean;
 
   @Column({
     type: DataType.BOOLEAN,
@@ -476,7 +464,7 @@ export class School extends Model<ISchool> {
     allowNull: false,
     defaultValue: false,
   })
-  BanheiroAcessivel: boolean;
+  banheiroAcessivel: boolean;
 
   @Column({
     type: DataType.BOOLEAN,

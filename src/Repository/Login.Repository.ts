@@ -15,20 +15,22 @@ export async function getLoginRepository(login: string): Promise<Users> {
 }
 export async function createUserRepository(user: Users): Promise<Users> {
   const t = await sequelize.transaction();
+
   const currentDate = new Date();
   let passwordExpirantionDate: Date;
   passwordExpirantionDate = new Date(
     currentDate.setMonth(currentDate.getMonth() + 3),
   );
   user.passwordExpires = passwordExpirantionDate;
+
   user.oldPassword = user.password;
   try {
-    let newUser: Users = await Users.create(user.dataValues, {
-      transaction: t,
-    });
+    const newUser = await Users.create(user, { transaction: t });
+
     await t.commit();
     return newUser;
   } catch (error) {
+    console.error('Erro ao criar usuário:', error);
     await t.rollback();
     throw error;
   }

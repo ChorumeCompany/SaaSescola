@@ -1,11 +1,7 @@
 import { writeJson } from '../utils/writer';
 import { LoginService } from '../service/Login.Service';
-import {
-  Created,
-  InternalServerError,
-  Validacao,
-} from '../utils/mensagens-ptbr';
-import { Users } from '../Model/User.Model';
+import { InternalServerError, Validacao } from '../utils/mensagens-ptbr';
+import type { Users } from '../Model/User.Model';
 
 const loginService = new LoginService();
 
@@ -34,18 +30,15 @@ export async function loginController(
     return writeJson(res, InternalServerError);
   }
 }
-export async function createUserController(
-  req: Request,
-  res: Response,
-): Promise<boolean> {
+export async function createUserController(req, res) {
   try {
-    const user = Users.build(req.body);
+    const user: Users = req.body;
 
-    const newUser = loginService.createUser(user);
+    const newUser = await loginService.createUser(user);
 
-    return writeJson(res, newUser, Created);
+    return writeJson(res, newUser);
   } catch (e) {
-    console.error(e);
+    console.error('Erro ao criar usuario', e);
     return writeJson(res, InternalServerError);
   }
 }

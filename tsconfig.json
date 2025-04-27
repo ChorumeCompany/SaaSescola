@@ -5,6 +5,7 @@
     "useDefineForClassFields": false,
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "target": "ES2021"
+    "target": "ES2021",
+    "skipLibCheck": true
   }
 }

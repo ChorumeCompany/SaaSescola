@@ -1,6 +1,7 @@
 import { configDotenv } from 'dotenv';
 import { Sequelize } from 'sequelize-typescript';
 import { Users } from '../Model/User.Model';
+import { School } from '../Model/School.Model';
 
 // Load environment variables
 configDotenv({ path: '.env' }); // Explicit path
@@ -23,7 +24,7 @@ export const sequelize = new Sequelize(databaseUrl, {
       rejectUnauthorized: false,
     },
   },
-  models: [Users],
+  models: [Users, School],
   logging: false,
   pool: {
     max: 10,

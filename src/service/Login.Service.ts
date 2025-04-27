@@ -11,7 +11,7 @@ import {
   createUserRepository,
   getLoginRepository,
 } from '../Repository/Login.Repository';
-import type { IUser, Users } from '../Model/User.Model';
+import type { Users } from '../Model/User.Model';
 
 export class LoginService {
   private static instance: LoginService;
@@ -19,10 +19,7 @@ export class LoginService {
     if (LoginService.instance) return LoginService.instance;
     LoginService.instance = this;
   }
-  async loginUserService(
-    login: string,
-    password: string,
-  ): Promise<{ statusCode: number; message: string; Bearer?: string }> {
+  async loginUserService(login: string, password: string) {
     try {
       const user: Users = await getLoginRepository(login);
       if (!user)
@@ -49,9 +46,9 @@ export class LoginService {
       );
 
       return {
-        statusCode: Accepted.statusCode,
+        Accepted,
         message: 'User logged in',
-        Bearer: token,
+        Bearer: `Bearer ${token}`,
       };
     } catch (error) {
       return {
@@ -60,9 +57,7 @@ export class LoginService {
       };
     }
   }
-  async createUser(
-    user: Users,
-  ): Promise<{ Users; statusCode: number; message: string }> {
+  async createUser(user: Users) {
     try {
       let passwordHash: string;
       passwordHash = await bcrypt.hash(user.password, 10);
@@ -76,13 +71,13 @@ export class LoginService {
       newUser = await createUserRepository(user);
 
       return {
-        statusCode: Created.statusCode,
-        message: 'Usuário criado com sucesso',
-        Users: newUser,
+        message: 'Usuario criado com sucesso',
+        data: newUser,
+        statusCode: Created,
       };
-    } catch (e) {
-      console.error(e);
-      throw new Error(e);
+    } catch (error) {
+      console.error('Erro ao criar usuário:', error);
+      throw new Error('Erro ao criar usuário');
     }
   }
 }

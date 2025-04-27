@@ -94,6 +94,7 @@ export class Users extends Model<IUser> {
 
   @Column({
     type: DataType.ENUM,
+    values: ['PS', 'US', 'ES'],
     allowNull: false,
   })
   roleEnum: string;

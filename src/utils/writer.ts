@@ -52,6 +52,7 @@ export const writeJson = (
 
   // Define os cabeçalhos da resposta
   const headers: Record<string, string> = {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     'Content-Type': 'application/json',
   };
 

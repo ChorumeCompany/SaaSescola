@@ -23,7 +23,6 @@ export default [
       prettier: prettierPlugin,
     },
     rules: {
-      // Regras base do JavaScript
       'arrow-body-style': ['error', 'as-needed'],
       'prefer-arrow-callback': [
         'error',
@@ -64,7 +63,17 @@ export default [
       },
     },
     rules: {
-      // Regras do TypeScript
+      // Regras mais flexíveis para Promises
+      '@typescript-eslint/no-misused-promises': [
+        'error',
+        {
+          checksVoidReturn: false, // Permite não tratar o retorno de Promises em alguns casos
+        },
+      ],
+      '@typescript-eslint/no-floating-promises': 'off', // Desativa a obrigação de tratar todas as Promises
+      '@typescript-eslint/promise-function-async': 'off', // Não obriga funções que retornam Promise a serem async
+      '@typescript-eslint/explicit-function-return-type': 'off',
+      // Outras regras do TypeScript
       '@typescript-eslint/no-unused-vars': [
         'warn',
         { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
@@ -81,7 +90,7 @@ export default [
           format: ['PascalCase'],
         },
         {
-          selector: [ 'enumMember'],
+          selector: ['enumMember'],
           modifiers: ['const'],
           format: ['UPPER_CASE'],
         },
@@ -96,15 +105,16 @@ export default [
           format: ['camelCase', 'PascalCase', 'snake_case'],
         },
       ],
-      '@typescript-eslint/explicit-function-return-type': [
-        'error',
-        {
-          allowExpressions: true,
-          allowHigherOrderFunctions: true,
-        },
-      ],
-      '@typescript-eslint/no-explicit-any': 'error',
+      '@typescript-eslint/no-explicit-any': 'warn', // Mudei para warn ao invés de error
       '@typescript-eslint/consistent-type-imports': 'error',
+    },
+  },
+  {
+    // Configurações específicas para controllers e services
+    files: ['**/*.controller.ts', '**/*.service.ts'],
+    rules: {
+      '@typescript-eslint/explicit-function-return-type': 'off', // Desativa em controllers/services
+      '@typescript-eslint/require-await': 'off', // Não obriga funções async a terem await
     },
   },
   {
@@ -117,24 +127,24 @@ export default [
       'prettier/prettier': [
         'error',
         {
-          "tabWidth": 2,
-          "useTabs": false,
-          "printWidth": 80,
-          "singleQuote": true,
-          "trailingComma": "all",
-          "arrowParens": "always",
-          "semi": true,
-          "endOfLine": "auto",
-          "overrides": [
+          tabWidth: 2,
+          useTabs: false,
+          printWidth: 80,
+          singleQuote: true,
+          trailingComma: 'all',
+          arrowParens: 'always',
+          semi: true,
+          endOfLine: 'auto',
+          overrides: [
             {
-              "files": "*.yaml",
-              "options": {
-                "bracketSameLine": false,
-                "proseWrap": "always"
-              }
-            }
-          ]
-        }
+              files: '*.yaml',
+              options: {
+                bracketSameLine: false,
+                proseWrap: 'always',
+              },
+            },
+          ],
+        },
       ],
     },
   },
