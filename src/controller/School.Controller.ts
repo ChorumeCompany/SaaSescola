@@ -2,11 +2,17 @@ import { SchoolService } from '../service/School.Service';
 import type { School } from '../Model/School.Model';
 import { writeJson } from '../utils/writer';
 import { InternalServerError } from '../utils/mensagens-ptbr';
+import { validarCPFouCNPJ } from '../utils/documentValidator';
 
 const schoolService = new SchoolService();
 export async function postNewSchoolController(req, res): Promise<boolean> {
   try {
     const school: School = req.body;
+
+    const valicaCNPJ = await validarCPFouCNPJ(school.cnpj);
+    if (valicaCNPJ === 422) {
+      return writeJson(res, valicaCNPJ.message, 422);
+    }
 
     const newSchool = await schoolService.postNewSchoolService(school);
 

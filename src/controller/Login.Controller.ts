@@ -2,6 +2,7 @@ import { writeJson } from '../utils/writer';
 import { LoginService } from '../service/Login.Service';
 import { InternalServerError, Validacao } from '../utils/mensagens-ptbr';
 import type { Users } from '../Model/User.Model';
+import { validarCPFouCNPJ } from '../utils/documentValidator';
 
 const loginService = new LoginService();
 
@@ -30,6 +31,11 @@ export async function loginController(req, res): Promise<boolean> {
 export async function createUserController(req, res) {
   try {
     const user: Users = req.body;
+
+    const validaCPF = await validarCPFouCNPJ(user.document);
+    if (validaCPF === 422) {
+      return writeJson(res, { message: validaCPF.message }, 422);
+    }
 
     const newUser = await loginService.createUserRepository(user);
 

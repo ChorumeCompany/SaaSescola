@@ -1,11 +1,18 @@
 import { writeJson } from '../utils/writer';
 import { InternalServerError } from '../utils/mensagens-ptbr';
 import { ProfissionalService } from '../service/Profissional.Service';
+import { validarCPFouCNPJ } from '../utils/documentValidator';
+import type { Profissionais } from '../Model/Profissionais.Model';
 
 const profissionalService = new ProfissionalService();
 export async function createProfissonaisController(req, res) {
   try {
-    const profissionail = req.body;
+    const profissionail: Profissionais = req.body;
+
+    const validaDocument = validarCPFouCNPJ(profissionail.document);
+    if (validaDocument === 422) {
+      return writeJson(res, { message: validaDocument.message }, 422);
+    }
 
     const newProfissional =
       await profissionalService.createProfissionalService(profissionail);
