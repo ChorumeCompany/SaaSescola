@@ -2,6 +2,7 @@
   "author": "Kaique Felipe | João Schmidt | Guilherme Denobi",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "copyfiles": "^2.4.1",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
@@ -46,7 +47,7 @@
   "name": "saas-escolas",
   "scripts": {
     "dev": "nodemon --exec \"tsx\" src/index.ts",
-    "build": "tsc",
+    "build": "tsc && copyfiles -f src/api/**/*.yaml dist/api",
     "start": "node dist/index.js",
     "migrate": "npx sequelize-cli db:migrate",
     "migrate:undo": "npx sequelize-cli db:migrate:undo",
