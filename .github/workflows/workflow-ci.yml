@@ -17,5 +17,5 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22.
-      - run: npm run eslint:fix
       - run: npm install
+      - run: npm run eslint:fix

@@ -1,7 +1,7 @@
 import { SchoolService } from '../service/School.Service';
 import type { School } from '../Model/School.Model';
 import { writeJson } from '../utils/writer';
-import { InternalServerError } from '../utils/mensagens-ptbr';
+import { internaServerError } from '../utils/mensagens-ptbr';
 import { validarCPFouCNPJ } from '../utils/documentValidator';
 
 const schoolService = new SchoolService();
@@ -19,7 +19,7 @@ export async function postNewSchoolController(req, res): Promise<boolean> {
     return writeJson(res, newSchool);
   } catch (e) {
     console.error(e);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }
 export async function getAllSchoolController(req, res) {
@@ -82,7 +82,7 @@ export async function getAllSchoolController(req, res) {
     return writeJson(res, schools);
   } catch (error) {
     console.error('erro ao cadastrar a escola', error);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }
 export async function getSchoolByIdController(req, res) {
@@ -94,7 +94,7 @@ export async function getSchoolByIdController(req, res) {
     return writeJson(res, school);
   } catch (error) {
     console.error('Erro ao buscar a escola', error);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }
 export async function updateSchoolbyIdController(req, res) {
@@ -107,7 +107,7 @@ export async function updateSchoolbyIdController(req, res) {
     return writeJson(res, updateScholl);
   } catch (error) {
     console.error('Erro ao atualizar a escola', error);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }
 export async function deleteSchoolbyIdController(req, res) {
@@ -119,6 +119,6 @@ export async function deleteSchoolbyIdController(req, res) {
     return writeJson(res, deletedSchool.Ok);
   } catch (error) {
     console.error('Erro ao deletar a escola', error);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }

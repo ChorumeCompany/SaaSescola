@@ -6,7 +6,7 @@ import {
   getSchoolByIdRepository,
   updateSchoolByIdRepository,
 } from '../Repository/School.Repository';
-import { Created, NotFound, Ok } from '../utils/mensagens-ptbr';
+import { created, notFound, ok } from '../utils/mensagens-ptbr';
 
 export class SchoolService {
   private static instance: SchoolService;
@@ -19,16 +19,18 @@ export class SchoolService {
       let newSchool: School;
       newSchool = await createSchoolRepository(school);
 
-      return { newSchool, Created };
+      return { newSchool, Created: created };
     } catch (error) {
       console.error('Erro ao cadastrar a escola', error);
     }
   }
-  async getAllSchoolService(filters?: Record<string, any>) {
+  async getAllSchoolService(
+    filters?: Record<string, string | number | boolean | null>,
+  ) {
     try {
       const schools = await getAllSchoolsRepository(filters);
 
-      return { schools, Ok };
+      return { schools, Ok: ok };
     } catch (error) {
       console.error('Erro ao buscar as escolas', error);
       return error;
@@ -37,9 +39,9 @@ export class SchoolService {
   async getSchoolByIdService(id: number) {
     try {
       const school = await getSchoolByIdRepository(id);
-      if (!school) return { NotFound };
+      if (!school) return { NotFound: notFound };
 
-      return { school, Ok };
+      return { school, Ok: ok };
     } catch (error) {
       console.error('Erro ao buscar a escola', error);
       return error;
@@ -48,8 +50,8 @@ export class SchoolService {
   async updateSchoolService(id: number, school: School) {
     try {
       const updateSchool = await updateSchoolByIdRepository(id, school);
-      if (!updateSchool) return { NotFound };
-      return { updateSchool, Ok };
+      if (!updateSchool) return { NotFound: notFound };
+      return { updateSchool, Ok: ok };
     } catch (error) {
       console.error('Erro ao atualizar a escola', error);
       return error;
@@ -58,8 +60,8 @@ export class SchoolService {
   async deletedSchoolService(id: number) {
     try {
       const deleteSchool = await deleteSchoolRepository(id);
-      if (!deleteSchool) return { NotFound };
-      return { deleteSchool, Ok };
+      if (!deleteSchool) return { NotFound: notFound };
+      return { deleteSchool, Ok: ok };
     } catch (error) {
       console.error('Erro ao deletar a escola', error);
       return error;
