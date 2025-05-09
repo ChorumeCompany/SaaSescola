@@ -13,7 +13,7 @@ export async function createSchoolRepository(school: School): Promise<School> {
   }
 }
 export async function getAllSchoolsRepository(
-  filters?: Record<string, any>,
+  filters?: Record<string, string | number | boolean | null>,
 ): Promise<School[]> {
   try {
     const where = {};

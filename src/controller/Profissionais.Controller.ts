@@ -1,5 +1,5 @@
 import { writeJson } from '../utils/writer';
-import { InternalServerError } from '../utils/mensagens-ptbr';
+import { internaServerError } from '../utils/mensagens-ptbr';
 import { ProfissionalService } from '../service/Profissional.Service';
 import { validarCPFouCNPJ } from '../utils/documentValidator';
 import type { Profissionais } from '../Model/Profissionais.Model';
@@ -20,7 +20,7 @@ export async function createProfissonaisController(req, res) {
     return writeJson(res, newProfissional);
   } catch (error) {
     console.error('Erro ao criar profissional', error);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }
 export async function getAllProfissionaisController(req, res) {
@@ -30,7 +30,7 @@ export async function getAllProfissionaisController(req, res) {
     return writeJson(res, profissionais);
   } catch (error) {
     console.error('Erro ao buscar os profissionais', error);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }
 export async function getProfissionalByIdController(req, res) {
@@ -57,7 +57,7 @@ export async function updateProfissionalByIdController(req, res) {
     return writeJson(res, updateProfissional);
   } catch (error) {
     console.error('Erro ao atualizar os profissionais', error);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }
 export async function deleteProfissionalController(req, res) {
@@ -69,6 +69,6 @@ export async function deleteProfissionalController(req, res) {
     return writeJson(res, deleteProfissional.Ok);
   } catch (error) {
     console.error('Erro ao deletar os profissionais', error);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }

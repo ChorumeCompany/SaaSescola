@@ -1,6 +1,6 @@
 import { writeJson } from '../utils/writer';
 import { LoginService } from '../service/Login.Service';
-import { InternalServerError, Validacao } from '../utils/mensagens-ptbr';
+import { internaServerError, validacao } from '../utils/mensagens-ptbr';
 import type { Users } from '../Model/User.Model';
 import { validarCPFouCNPJ } from '../utils/documentValidator';
 
@@ -11,10 +11,10 @@ export async function loginController(req, res): Promise<boolean> {
     const authentication: { login: string; password: string } = req.body;
 
     if (!authentication.login) {
-      return writeJson(res, Validacao.Login);
+      return writeJson(res, validacao.Login);
     }
     if (!authentication.password) {
-      return writeJson(res, Validacao.password);
+      return writeJson(res, validacao.password);
     }
 
     const user = await loginService.loginUserService(
@@ -25,7 +25,7 @@ export async function loginController(req, res): Promise<boolean> {
     return writeJson(res, user);
   } catch (e) {
     console.error(e);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }
 export async function createUserController(req, res) {
@@ -42,7 +42,7 @@ export async function createUserController(req, res) {
     return writeJson(res, newUser);
   } catch (e) {
     console.error('Erro ao criar usuario', e);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }
 export async function getAllUsersController(req, res) {
@@ -52,7 +52,7 @@ export async function getAllUsersController(req, res) {
     return writeJson(res, allUsers);
   } catch (e) {
     console.error('Erro ao buscar os usuarios', e);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }
 export async function getUserByIdController(req, res) {
@@ -64,7 +64,7 @@ export async function getUserByIdController(req, res) {
     return writeJson(res, user);
   } catch (e) {
     console.error('Erro ao buscar os usuarios', e);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }
 export async function updateUserController(req, res) {
@@ -77,7 +77,7 @@ export async function updateUserController(req, res) {
     return writeJson(res, updateUser);
   } catch (error) {
     console.error('Erro ao atualizar os usuarios', error);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }
 export async function deleteUserController(req, res) {
@@ -88,6 +88,6 @@ export async function deleteUserController(req, res) {
     return writeJson(res, deleteUser.Ok);
   } catch (error) {
     console.error('Erro ao deletar os usuarios', error);
-    return writeJson(res, InternalServerError);
+    return writeJson(res, internaServerError);
   }
 }

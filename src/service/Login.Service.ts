@@ -1,10 +1,10 @@
 import {
-  Accepted,
-  Created,
-  InternalServerError,
-  NotFound,
-  Ok,
-  Unauthorized,
+  accepted,
+  created,
+  internaServerError,
+  notFound,
+  ok,
+  unauthorized,
 } from '../utils/mensagens-ptbr';
 import * as bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -28,12 +28,12 @@ export class LoginService {
     try {
       const user: Users = await getLoginRepository(login);
       if (!user)
-        return { statusCode: NotFound.statusCode, message: NotFound.message };
+        return { statusCode: notFound.statusCode, message: notFound.message };
 
       const passwordMatch = await bcrypt.compare(password, user.password);
       if (!passwordMatch) {
         return {
-          statusCode: Unauthorized.statusCode,
+          statusCode: unauthorized.statusCode,
           message: 'Senha inválida',
         };
       }
@@ -51,13 +51,13 @@ export class LoginService {
       );
 
       return {
-        Accepted,
+        Accepted: accepted,
         message: 'User logged in',
         Bearer: `Bearer ${token}`,
       };
     } catch (error) {
       return {
-        statusCode: InternalServerError.statusCode,
+        statusCode: internaServerError.statusCode,
         message: error,
       };
     }
@@ -78,7 +78,7 @@ export class LoginService {
       return {
         message: 'Usuario criado com sucesso',
         data: newUser,
-        statusCode: Created,
+        statusCode: created,
       };
     } catch (error) {
       console.error('Erro ao criar usuário:', error);
@@ -89,46 +89,46 @@ export class LoginService {
     try {
       const allUsers = await getAllUsersRepository();
       if (!allUsers) {
-        return { NotFound };
+        return { NotFound: notFound };
       }
 
-      return { Ok, allUsers };
+      return { Ok: ok, allUsers };
     } catch (error) {
       console.error('Erro ao buscar os usuarios', error);
-      return { error, InternalServerError };
+      return { error, InternalServerError: internaServerError };
     }
   }
   static async getUserByIdService(id: number) {
     try {
       const user = await getUserByIdRepository(id);
       if (!user) {
-        return { NotFound };
+        return { NotFound: notFound };
       }
-      return { Ok, user };
+      return { Ok: ok, user };
     } catch (error) {
       console.error('Erro ao buscar os usuarios', error);
-      return { error, InternalServerError };
+      return { error, InternalServerError: internaServerError };
     }
   }
   async updateUserService(id: number, user: Users) {
     try {
       const updateUser = await updateUserRepository(id, user);
       if (!updateUser) {
-        return { NotFound };
+        return { NotFound: notFound };
       }
-      return { Ok, updateUser };
+      return { Ok: ok, updateUser };
     } catch (error) {
       console.error('Erro ao atualizar os usuarios', error);
-      return { error, InternalServerError };
+      return { error, InternalServerError: internaServerError };
     }
   }
   async deleteUserService(id: number) {
     try {
       const deleteUser = await deleteUserRepository(id);
-      return { Ok, deleteUser };
+      return { Ok: ok, deleteUser };
     } catch (error) {
       console.error('Erro ao deletar os usuarios', error);
-      return { error, InternalServerError };
+      return { error, InternalServerError: internaServerError };
     }
   }
 }

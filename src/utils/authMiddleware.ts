@@ -20,9 +20,11 @@ export const authenticateToken = (
   try {
     const secret = process.env.SECRET as string;
     const decoded = jwt.verify(token, secret);
-    (req as any).user = decoded;
+    (req as Request & { user?: unknown }).user = decoded;
     next();
   } catch (error) {
-    return res.status(403).json({ message: 'Token inválido ou expirado.' });
+    return res
+      .status(403)
+      .json({ message: 'Token inválido ou expirado.', error });
   }
 };

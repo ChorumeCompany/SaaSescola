@@ -1,29 +1,29 @@
-export const InternalServerError = {
+export const internaServerError = {
   message: 'Internal Server Error.',
   statusCode: 500,
   img: `https://http.cat/status/500`,
 };
-export const NotFound = {
+export const notFound = {
   message: 'Not Found.',
   statusCode: 404,
   img: `https://http.cat/status/404`,
 };
-export const BadRequest = {
+export const badRequest = {
   message: 'Bad Request.',
   statusCode: 400,
   img: `https://http.cat/status/400`,
 };
-export const Created = {
+export const created = {
   message: 'Created.',
   statusCode: 201,
   img: `https://http.cat/status/201`,
 };
-export const Unauthorized = {
+export const unauthorized = {
   message: 'Unauthorized.',
   statusCode: 401,
   img: `https://http.cat/status/401`,
 };
-export const Ok = {
+export const ok = {
   message: 'Ok.',
   statusCode: 200,
   img: `https://http.cat/status/200`,
@@ -33,129 +33,129 @@ export const unprocessableEntity = {
   statusCode: 422,
   img: `https://http.cat/status/422`,
 };
-export const TokenExpired = {
+export const tokenExpired = {
   message: 'Token Expired.',
   statusCode: 498,
   img: `https://http.cat/status/498`,
 };
-export const NoContent = {
+export const noContent = {
   message: 'No Content.',
   statusCode: 204,
   img: `https://http.cat/status/204`,
 };
-export const Accepted = {
+export const accepted = {
   message: 'Accepted.',
   statusCode: 202,
   img: `https://http.cat/status/202`,
 };
 
-export const Validacao = {
+export const validacao = {
   //obrigatório
-  idCliente: { mensagem: 'o [idCliente] é obrigatório', statusCode: NotFound },
+  idCliente: { mensagem: 'o [idCliente] é obrigatório', statusCode: notFound },
   idSimulacao: {
     mensagem: 'o [idSimulacao] é obrigatório',
-    statusCode: NotFound,
+    statusCode: notFound,
   },
-  idCarctr: { mensagem: 'O [idCarctr] é obrigatório', statusCode: NotFound },
-  Login: { mensagem: 'o [Login] é obrigatório', statusCode: NotFound },
-  clientId: { mensagem: 'o [clientId] é obrigatório', statusCode: NotFound },
-  cdConven: { mensagem: 'O [cdConven] é obrigatório', statusCode: NotFound },
-  cdProdut: { mensagem: 'O [cdProdut] é obrigatório', statusCode: NotFound },
-  cdCvcons: { mensagem: 'O [cdCvcons] é obrigatório', statusCode: NotFound },
-  dtVct1ap: { mensagem: 'O [dtVct1ap] é obrigatório', statusCode: NotFound },
-  dtVctult: { mensagem: 'O [dtVctult] é obrigatório', statusCode: NotFound },
-  vlTotal: { mensagem: 'O [vlTotal] é obrigatório', statusCode: NotFound },
-  vlSeguro: { mensagem: 'O [vlSeguro] é obrigatório', statusCode: NotFound },
-  vlPresta: { mensagem: 'O [vlPresta] é obrigatório', statusCode: NotFound },
-  vlOutvlr: { mensagem: 'O [vlOutvlr] é obrigatório', statusCode: NotFound },
-  vlLiquid: { mensagem: 'O [vlLiquid] é obrigatório', statusCode: NotFound },
-  vlJuros: { mensagem: 'O [vlJuros] é obrigatório', statusCode: NotFound },
-  vlIofCob: { mensagem: 'O [vlIofCob] é obrigatório', statusCode: NotFound },
-  vlFinan: { mensagem: 'O [vlFinan] é obrigatório', statusCode: NotFound },
-  vlContra: { mensagem: 'O [vlContra] é obrigatório', statusCode: NotFound },
-  vlConces: { mensagem: 'O [vlConces] é obrigatório', statusCode: NotFound },
-  txRefCdc: { mensagem: 'O [txRefCdc] é obrigatório', statusCode: NotFound },
-  txFinmes: { mensagem: 'O [txFinmes] é obrigatório', statusCode: NotFound },
-  txFinano: { mensagem: 'O [txFinano] é obrigatório', statusCode: NotFound },
-  txCetMes: { mensagem: 'O [txCetMes] é obrigatório', statusCode: NotFound },
-  txCetAno: { mensagem: 'O [txCetAno] é obrigatório', statusCode: NotFound },
-  qtPresta: { mensagem: 'O [qtPresta] é obrigatório', statusCode: NotFound },
-  dtContra: { mensagem: 'O [dtContra] é obrigatório', statusCode: NotFound },
+  idCarctr: { mensagem: 'O [idCarctr] é obrigatório', statusCode: notFound },
+  Login: { mensagem: 'o [Login] é obrigatório', statusCode: notFound },
+  clientId: { mensagem: 'o [clientId] é obrigatório', statusCode: notFound },
+  cdConven: { mensagem: 'O [cdConven] é obrigatório', statusCode: notFound },
+  cdProdut: { mensagem: 'O [cdProdut] é obrigatório', statusCode: notFound },
+  cdCvcons: { mensagem: 'O [cdCvcons] é obrigatório', statusCode: notFound },
+  dtVct1ap: { mensagem: 'O [dtVct1ap] é obrigatório', statusCode: notFound },
+  dtVctult: { mensagem: 'O [dtVctult] é obrigatório', statusCode: notFound },
+  vlTotal: { mensagem: 'O [vlTotal] é obrigatório', statusCode: notFound },
+  vlSeguro: { mensagem: 'O [vlSeguro] é obrigatório', statusCode: notFound },
+  vlPresta: { mensagem: 'O [vlPresta] é obrigatório', statusCode: notFound },
+  vlOutvlr: { mensagem: 'O [vlOutvlr] é obrigatório', statusCode: notFound },
+  vlLiquid: { mensagem: 'O [vlLiquid] é obrigatório', statusCode: notFound },
+  vlJuros: { mensagem: 'O [vlJuros] é obrigatório', statusCode: notFound },
+  vlIofCob: { mensagem: 'O [vlIofCob] é obrigatório', statusCode: notFound },
+  vlFinan: { mensagem: 'O [vlFinan] é obrigatório', statusCode: notFound },
+  vlContra: { mensagem: 'O [vlContra] é obrigatório', statusCode: notFound },
+  vlConces: { mensagem: 'O [vlConces] é obrigatório', statusCode: notFound },
+  txRefCdc: { mensagem: 'O [txRefCdc] é obrigatório', statusCode: notFound },
+  txFinmes: { mensagem: 'O [txFinmes] é obrigatório', statusCode: notFound },
+  txFinano: { mensagem: 'O [txFinano] é obrigatório', statusCode: notFound },
+  txCetMes: { mensagem: 'O [txCetMes] é obrigatório', statusCode: notFound },
+  txCetAno: { mensagem: 'O [txCetAno] é obrigatório', statusCode: notFound },
+  qtPresta: { mensagem: 'O [qtPresta] é obrigatório', statusCode: notFound },
+  dtContra: { mensagem: 'O [dtContra] é obrigatório', statusCode: notFound },
   orchestratorId: {
     mensagem: 'O [orchestratorId] é obrigatório',
-    statusCode: NotFound,
+    statusCode: notFound,
   },
   simulationId: {
     mensagem: 'O [simulationId] é obrigatório',
-    statusCode: NotFound,
+    statusCode: notFound,
   },
 
   idPrestResponse: {
     mensagem: 'O [idPrestResponse] é obrigatório',
-    statusCode: NotFound,
+    statusCode: notFound,
   },
-  nrTxmax: { mensagem: 'O [nrTxmax] é obrigatório', statusCode: NotFound },
-  nrTxmin: { mensagem: 'O [nrTxmin] é obrigatório', statusCode: NotFound },
+  nrTxmax: { mensagem: 'O [nrTxmax] é obrigatório', statusCode: notFound },
+  nrTxmin: { mensagem: 'O [nrTxmin] é obrigatório', statusCode: notFound },
   qtPrestmax: {
     mensagem: 'O [qtPrestmax] é obrigatório',
-    statusCode: NotFound,
+    statusCode: notFound,
   },
   qtPrestmin: {
     mensagem: 'O [qtPrestmin] é obrigatório',
-    statusCode: NotFound,
+    statusCode: notFound,
   },
-  qtRegist: { mensagem: 'O [qtRegist] é obrigatório', statusCode: NotFound },
-  vlFinanc: { mensagem: 'O [vlFinanc] é obrigatório', statusCode: NotFound },
+  qtRegist: { mensagem: 'O [qtRegist] é obrigatório', statusCode: notFound },
+  vlFinanc: { mensagem: 'O [vlFinanc] é obrigatório', statusCode: notFound },
   simulationStatusId: {
     mensagem: 'O [simulationStatusId] é obrigatório',
-    statusCode: NotFound,
+    statusCode: notFound,
   },
-  cpf: { mensagem: 'O [cpf] é obrigatório', statusCode: NotFound },
-  name: { mensagem: 'O [name] é obrigatório', statusCode: NotFound },
-  statusId: { mensagem: 'O [statusId] é obrigatório', statusCode: NotFound },
-  phone: { mensagem: 'O [phone] é obrigatório', statusCode: NotFound },
-  password: { mensagem: 'O [password] é obrigatório', statusCode: NotFound },
-  email: { mensagem: 'O [email] é obrigatório', statusCode: NotFound },
-  roleId: { mensagem: 'O [roleId] é obrigatório', statusCode: NotFound },
-  companyId: { mensagem: 'O [companyId] é obrigatório', statusCode: NotFound },
-  identity: { mensage: 'O [identity] é obrigatório', statusCode: NotFound },
-  birthDate: { mensage: 'O [birthDate] é obrigatório', statusCode: NotFound },
-  genderId: { mensage: 'O [genderId] é obrigatório', statusCode: NotFound },
+  cpf: { mensagem: 'O [cpf] é obrigatório', statusCode: notFound },
+  name: { mensagem: 'O [name] é obrigatório', statusCode: notFound },
+  statusId: { mensagem: 'O [statusId] é obrigatório', statusCode: notFound },
+  phone: { mensagem: 'O [phone] é obrigatório', statusCode: notFound },
+  password: { mensagem: 'O [password] é obrigatório', statusCode: notFound },
+  email: { mensagem: 'O [email] é obrigatório', statusCode: notFound },
+  roleId: { mensagem: 'O [roleId] é obrigatório', statusCode: notFound },
+  companyId: { mensagem: 'O [companyId] é obrigatório', statusCode: notFound },
+  identity: { mensage: 'O [identity] é obrigatório', statusCode: notFound },
+  birthDate: { mensage: 'O [birthDate] é obrigatório', statusCode: notFound },
+  genderId: { mensage: 'O [genderId] é obrigatório', statusCode: notFound },
   maritalStatusId: {
     mensage: 'O [maritalStatusId] é obrigatório',
-    statusCode: NotFound,
+    statusCode: notFound,
   },
   personTypeId: {
     mensage: 'O [personTypeId] é obrigatório',
-    statusCode: NotFound,
+    statusCode: notFound,
   },
-  mainPhone: { mensage: 'O [mainPhone] é obrigatório', statusCode: NotFound },
-  mainEmail: { mensage: 'O [mainEmail] é obrigatório', statusCode: NotFound },
+  mainPhone: { mensage: 'O [mainPhone] é obrigatório', statusCode: notFound },
+  mainEmail: { mensage: 'O [mainEmail] é obrigatório', statusCode: notFound },
   mainAddressId: {
     mensage: 'O [mainAddressId] é obrigatório',
-    statusCode: NotFound,
+    statusCode: notFound,
   },
-  bankDataId: { mensage: 'O [bankDataId] é obrigatório', statusCode: NotFound },
-  street: { mensagem: 'O [street] é obrigatório', statusCode: NotFound },
-  number: { mensagem: 'O [number] é obrigatório', statusCode: NotFound },
+  bankDataId: { mensage: 'O [bankDataId] é obrigatório', statusCode: notFound },
+  street: { mensagem: 'O [street] é obrigatório', statusCode: notFound },
+  number: { mensagem: 'O [number] é obrigatório', statusCode: notFound },
   neighborhood: {
     mensagem: 'O [neighborhood] é obrigatório',
-    statusCode: NotFound,
+    statusCode: notFound,
   },
-  city: { mensagem: 'O [city] é obrigatório', statusCode: NotFound },
-  state: { mensagem: 'O [state] é obrigatório', statusCode: NotFound },
+  city: { mensagem: 'O [city] é obrigatório', statusCode: notFound },
+  state: { mensagem: 'O [state] é obrigatório', statusCode: notFound },
   postalCode: {
     mensagem: 'O [cep] é obrigatório',
-    statusCode: NotFound,
+    statusCode: notFound,
   },
-  cnpj: { mensagem: 'O [cnpj] é obrigatório', statusCode: NotFound },
+  cnpj: { mensagem: 'O [cnpj] é obrigatório', statusCode: notFound },
   tipoCompany: {
     mensagem: 'O [tipoCompany] é obrigatório',
-    statusCode: NotFound,
+    statusCode: notFound,
   },
-  ddd: { mensagem: 'O [DDD] é obrigatório', statusCode: NotFound },
+  ddd: { mensagem: 'O [DDD] é obrigatório', statusCode: notFound },
   dadosPf: {
     mensagem: 'O [dadosPf] é obrigatório',
-    statusCode: NotFound,
+    statusCode: notFound,
   },
 };

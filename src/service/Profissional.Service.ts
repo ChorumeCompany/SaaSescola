@@ -1,9 +1,9 @@
 import type { Profissionais } from '../Model/Profissionais.Model';
 import {
-  Created,
-  InternalServerError,
-  NotFound,
-  Ok,
+  created,
+  internaServerError,
+  notFound,
+  ok,
 } from '../utils/mensagens-ptbr';
 import {
   createProfissionalRepository,
@@ -24,12 +24,12 @@ export class ProfissionalService {
       const newProfissional = await createProfissionalRepository(profissional);
 
       return {
-        Created,
+        Created: created,
         newProfissional,
       };
     } catch (error) {
       console.error('Erro ao criar profissional', error);
-      return { error, InternalServerError };
+      return { error, InternalServerError: internaServerError };
     }
   }
   async getAllProfissionaisService() {
@@ -37,13 +37,13 @@ export class ProfissionalService {
       const allProfissionais = await getAllProfissionaisRepository();
 
       if (!allProfissionais) {
-        return { NotFound };
+        return { NotFound: notFound };
       }
 
-      return { Ok, allProfissionais };
+      return { Ok: ok, allProfissionais };
     } catch (error) {
       console.error('Erro ao buscar os profissionais', error);
-      return { error, InternalServerError };
+      return { error, InternalServerError: internaServerError };
     }
   }
   async getProfissionalByIdService(id: number) {
@@ -51,13 +51,13 @@ export class ProfissionalService {
       const profissionais = await getProfissionalByIdRepository(id);
 
       if (!profissionais) {
-        return { NotFound };
+        return { NotFound: notFound };
       }
 
-      return { Ok, profissionais };
+      return { Ok: ok, profissionais };
     } catch (error) {
       console.error('Erro ao buscar os profissionais', error);
-      return { error, InternalServerError };
+      return { error, InternalServerError: internaServerError };
     }
   }
   async updateProfissionalByIdService(
@@ -70,19 +70,19 @@ export class ProfissionalService {
         profissionais,
       );
       if (!updateProfissional) {
-        return { NotFound };
+        return { NotFound: notFound };
       }
-      return { Ok, updateProfissional };
+      return { Ok: ok, updateProfissional };
     } catch (error) {
       console.error('Erro ao atualizar os profissionais', error);
-      return { error, InternalServerError };
+      return { error, InternalServerError: internaServerError };
     }
   }
   async deleteProfissionalService(id: number) {
     try {
       const deleteProfissional = await deleteProfissionalRepository(id);
 
-      return { Ok, deleteProfissional };
+      return { Ok: ok, deleteProfissional };
     } catch (error) {
       console.error('Erro ao deletar os profissionais', error);
     }
