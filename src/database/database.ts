@@ -5,43 +5,67 @@ import { School } from '../Model/School.Model';
 import { Profissionais } from '../Model/Profissionais.Model';
 
 // Load environment variables
-configDotenv({ path: '.env' }); // Explicit path
+configDotenv({ path: '.env' });
 
-// Clean the DATABASE_URL by removing any 'DATABASE_URL=' prefix
-const rawDbUrl = process.env.DATABASE_URL || '';
-const databaseUrl = rawDbUrl.replace(/^DATABASE_URL=/, '').trim();
+// Obtenha a URL de conexão do ambiente
+const dbUrl = process.env.DATABASE_URL || '';
 
-if (!databaseUrl) {
-  throw new Error('DATABASE_URL is not defined in your .env file');
+// Solução mais robusta para parsing da URL
+let dbConfig;
+if (dbUrl.startsWith('postgresql://') || dbUrl.startsWith('postgres://')) {
+  // Remove o prefixo e divide a URL
+  const cleanUrl = dbUrl.replace(/^postgres(ql)?:\/\//, '');
+  const [auth, rest] = cleanUrl.split('@');
+  const [username, password] = auth.split(':');
+  if (!rest) {
+    throw new Error(
+      'Invalid database URL format: missing host and database information.',
+    );
+  }
+  const [hostPort, database] = rest.split('/');
+  const [host, port] = hostPort.split(':');
+
+  dbConfig = {
+    database,
+    username,
+    password,
+    host,
+    port: port ? parseInt(port) : 5432, // Porta padrão 5432 se não especificada
+    dialect: 'postgres' as const,
+    dialectOptions: {
+      ssl: false, // Altere para true em produção com certificados válidos
+    },
+    models: [Users, School, Profissionais],
+    logging: false,
+  };
+} else {
+  // Formato alternativo caso não seja uma URL completa
+  dbConfig = {
+    database: process.env.DB_NAME,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: parseInt(process.env.DB_PORT),
+    dialect: 'postgres' as const,
+    dialectOptions: {
+      ssl: false,
+    },
+    models: [Users, School, Profissionais],
+    logging: false,
+  };
 }
 
-// Initialize Sequelize
-export const sequelize = new Sequelize(databaseUrl, {
-  dialect: 'postgres', // Explicitly set for Supabase
-  protocol: 'postgres',
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
-  models: [Users, School, Profissionais],
-  logging: false,
-  pool: {
-    max: 10,
-    min: 0,
-    acquire: 30000,
-    idle: 100000,
-  },
-});
+// Inicialize o Sequelize
+export const sequelize = new Sequelize(dbConfig);
 
-// Test connection
+// Teste de conexão
 export const connectDB = async (): Promise<void> => {
   try {
     await sequelize.authenticate();
-    console.info('Connected to Supabase PostgreSQL');
+    await sequelize.sync();
+    console.info('Database connection established successfully.');
   } catch (error) {
-    console.error('Supabase connection error:', error);
+    console.error('Unable to connect to the database:', error);
     process.exit(1);
   }
 };

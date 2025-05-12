@@ -1,40 +1,41 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:15
     container_name: saasescola_db
     environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
-      POSTGRES_DB: ${DB_NAME:-saasescola}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     ports:
-      - '5432:5432'
+      - '127.0.0.1:5433:5432'
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - pgdata_escola:/var/lib/postgresql/data
     healthcheck:
       test: ['CMD-SHELL', 'pg_isready -U postgres']
       interval: 5s
       timeout: 5s
       retries: 5
     networks:
-      - compose-bridge
+      escola_network:
 
   saasescola:
     image: kaiquedfelipe08/saasescola
     container_name: saasescola
     environment:
-      DATABASE_URL: 'DATABASE_URL=postgresql://postgres.glrbtitaviirszazohhu:${DB_PASSWORD}@aws-0-sa-east-1.pooler.supabase.com:6543/${DB_NAME}'
+      DATABASE_URL: ${DATABASE_URL}
     ports:
       - '3000:3000'
     depends_on:
       db:
         condition: service_healthy
     networks:
-      - compose-bridge
+      escola_network:
 
 volumes:
-  postgres_data:
+  pgdata_escola:
 
 networks:
-  compose-bridge:
+  escola_network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.29.0.0/16
