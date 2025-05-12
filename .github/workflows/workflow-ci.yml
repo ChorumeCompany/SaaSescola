@@ -23,3 +23,9 @@ jobs:
       - run: npm install
 
       - run: npm run eslint:fix
+
+      - run: npm run test
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
