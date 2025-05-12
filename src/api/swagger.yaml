@@ -8,7 +8,7 @@ securityDefinitions:
 info:
   title: S.a.a.S Escolas
   description: Serviço de teste da API
-  version: 1.0.0
+  version: 1.0.
 
 paths:
   /authentication:
