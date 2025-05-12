@@ -11,6 +11,6 @@
     "rootDir": "./",
     "skipLibCheck": true
   },
-  "include": ["src/**/*.ts", "test/**/*.ts"],
+  "include": ["src/**/*.ts", "test/**/*.ts", "jest.config.ts"], // Inclui o arquivo de configuração do Jest
   "exclude": ["node_modules"]
 }
