@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 22.
       - name: start db
-        run: DB_PASSWORD=${{ secrets.DB_PASSWORD }} DB_NAME=${{ secrets.DB_NAME }} DATABASE_URL=${{ secrets.DATABASE_URL }} docker compose up -d postgres
+        run: DB_PASSWORD=${{ secrets.DB_PASSWORD }} DB_NAME=${{ secrets.DB_NAME }} DATABASE_URL=${{ secrets.DATABASE_URL }} docker compose up -d db
 
       - run: npm install
 
