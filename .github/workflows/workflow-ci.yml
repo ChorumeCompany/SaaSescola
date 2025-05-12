@@ -11,18 +11,14 @@ on:
 
 jobs:
   ci:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        node-version: [20]
-        os: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22.
       - name: start db
         run: DB_PASSWORD=${{ secrets.DB_PASSWORD }} DB_NAME=${{ secrets.DB_NAME }} DATABASE_URL=${{ secrets.DATABASE_URL }} docker compose up -d db
 
@@ -36,7 +32,6 @@ jobs:
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_NAME: ${{ secrets.DB_NAME }}
 
-      - uses: actions/checkout@v4
       - name: Build
         run: npm run build
 
