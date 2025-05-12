@@ -4,6 +4,8 @@
 name: workflow CI
 
 on:
+  push:
+    branches: ['main']
   pull_request:
     branches: ['main']
 
@@ -29,3 +31,13 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_NAME: ${{ secrets.DB_NAME }}
+
+      - name: Build
+        run: npm run build
+
+      - name: complited project
+        uses: actions/upload-artifact@v4
+        with:
+          name: saasescola_Prod
+          path: index.js
+
