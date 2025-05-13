@@ -41,6 +41,13 @@ jobs:
           name: saasescola_Prod
           path: dist/
 
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: apisaasescola
+          path: dist/
+
   docker:
     needs: ci
     uses: ./.github/workflows/docker.yml
+    secrets: inherit
