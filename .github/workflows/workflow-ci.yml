@@ -44,3 +44,4 @@ jobs:
   docker:
     needs: ci
     uses: ./.github/workflows/docker.yml
+    secrets: inherit
