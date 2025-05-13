@@ -40,3 +40,7 @@ jobs:
         with:
           name: saasescola_Prod
           path: dist/
+
+  docker:
+    needs: ci
+    uses: ./.github/workflows/docker.yml
