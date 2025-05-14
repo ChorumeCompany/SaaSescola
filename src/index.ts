@@ -75,25 +75,14 @@ routes.forEach(({ path, method, operationId, params }): void => {
     ) {
       params.forEach((param): void => {
         if (param.in === 'path') {
-          const correctedPath: string = path.replace(
+          const correctedPath = path.replace(
             `{${param.name}}`,
             `:${param.name}`,
           );
-          if (operationId === 'postClientDocumentController') {
-            (app as Application)[method as keyof Application](
-              correctedPath,
-              handler,
-            );
-          } else {
-            (app as Application)[method as keyof Application](
-              correctedPath,
-              handler,
-            );
-          }
         }
       });
     } else {
-      (app as Application)[method as keyof Application](path, handler);
+      app[method as keyof Application](path, handler);
     }
   } else {
     console.error(`Controller não encontrado para operationId: ${operationId}`);

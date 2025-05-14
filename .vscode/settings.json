@@ -1,0 +1,6 @@
+{
+  "sonarlint.connectedMode.project": {
+    "connectionId": "chorumecompany",
+    "projectKey": "ChorumeCompany_SaaSescola"
+  }
+}

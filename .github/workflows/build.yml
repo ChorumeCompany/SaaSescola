@@ -14,3 +14,17 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarQube Quality Gate
+        uses: SonarSource/sonarqube-quality-gate-action@v2
+        with:
+          projectKey: kaiquedfelipe08_apisaasescola
+          projectName: apisaasescola
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Run Jest Tests
+        run: |
+          npm ci
+          npm run test -- --coverage
+      - name: Upload coverage to SonarQube
+        run: |
+          echo "sonar.javascript.lcov.reportPaths=coverage/lcov.info" >> sonar-project.properties
