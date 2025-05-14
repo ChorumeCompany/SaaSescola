@@ -136,3 +136,5 @@ src/config
 .idea
 /dist
 dockerrun.txt
+/test-results
+junit.xml
