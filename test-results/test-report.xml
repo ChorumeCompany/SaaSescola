@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="57" failures="0" errors="0" time="11.384">
+  <testsuite name="mensagens-ptbr exports" errors="0" failures="0" skipped="0" timestamp="2025-05-14T20:32:28" time="8.384" tests="21">
+    <testcase classname="mensagens-ptbr exports should export internaServerError with correct values" name="mensagens-ptbr exports should export internaServerError with correct values" time="0.018">
+    </testcase>
+    <testcase classname="mensagens-ptbr exports should export notFound with correct values" name="mensagens-ptbr exports should export notFound with correct values" time="0.001">
+    </testcase>
+    <testcase classname="mensagens-ptbr exports should export badRequest with correct values" name="mensagens-ptbr exports should export badRequest with correct values" time="0.001">
+    </testcase>
+    <testcase classname="mensagens-ptbr exports should export created with correct values" name="mensagens-ptbr exports should export created with correct values" time="0.001">
+    </testcase>
+    <testcase classname="mensagens-ptbr exports should export unauthorized with correct values" name="mensagens-ptbr exports should export unauthorized with correct values" time="0.001">
+    </testcase>
+    <testcase classname="mensagens-ptbr exports should export ok with correct values" name="mensagens-ptbr exports should export ok with correct values" time="0.001">
+    </testcase>
+    <testcase classname="mensagens-ptbr exports should export unprocessableEntity with correct values" name="mensagens-ptbr exports should export unprocessableEntity with correct values" time="0.001">
+    </testcase>
+    <testcase classname="mensagens-ptbr exports should export tokenExpired with correct values" name="mensagens-ptbr exports should export tokenExpired with correct values" time="0.001">
+    </testcase>
+    <testcase classname="mensagens-ptbr exports should export noContent with correct values" name="mensagens-ptbr exports should export noContent with correct values" time="0.002">
+    </testcase>
+    <testcase classname="mensagens-ptbr exports should export accepted with correct values" name="mensagens-ptbr exports should export accepted with correct values" time="0.001">
+    </testcase>
+    <testcase classname="mensagens.validacao should have all required validation messages with correct structure" name="mensagens.validacao should have all required validation messages with correct structure" time="0.007">
+    </testcase>
+    <testcase classname="mensagens.validacao should have correct mensagem and statusCode for idCliente" name="mensagens.validacao should have correct mensagem and statusCode for idCliente" time="0">
+    </testcase>
+    <testcase classname="mensagens.validacao should have correct mensagem and statusCode for idSimulacao" name="mensagens.validacao should have correct mensagem and statusCode for idSimulacao" time="0.001">
+    </testcase>
+    <testcase classname="mensagens.validacao should have correct mensagem and statusCode for cpf" name="mensagens.validacao should have correct mensagem and statusCode for cpf" time="0">
+    </testcase>
+    <testcase classname="mensagens.validacao should have correct mensagem and statusCode for email" name="mensagens.validacao should have correct mensagem and statusCode for email" time="0">
+    </testcase>
+    <testcase classname="mensagens.validacao should have correct mensage and statusCode for identity" name="mensagens.validacao should have correct mensage and statusCode for identity" time="0.001">
+    </testcase>
+    <testcase classname="mensagens.validacao should have correct mensage and statusCode for birthDate" name="mensagens.validacao should have correct mensage and statusCode for birthDate" time="0.001">
+    </testcase>
+    <testcase classname="mensagens.validacao should have correct mensagem and statusCode for dadosPf" name="mensagens.validacao should have correct mensagem and statusCode for dadosPf" time="0.001">
+    </testcase>
+    <testcase classname="mensagens.validacao should have correct mensagem and statusCode for postalCode" name="mensagens.validacao should have correct mensagem and statusCode for postalCode" time="0.001">
+    </testcase>
+    <testcase classname="mensagens.validacao should have correct mensagem and statusCode for ddd" name="mensagens.validacao should have correct mensagem and statusCode for ddd" time="0">
+    </testcase>
+    <testcase classname="mensagens.validacao should have correct mensagem and statusCode for tipoCompany" name="mensagens.validacao should have correct mensagem and statusCode for tipoCompany" time="0">
+    </testcase>
+  </testsuite>
+  <testsuite name="validarCNPJ" errors="0" failures="0" skipped="0" timestamp="2025-05-14T20:32:28" time="8.418" tests="17">
+    <testcase classname="validarCNPJ should return false for empty string" name="validarCNPJ should return false for empty string" time="0.02">
+    </testcase>
+    <testcase classname="validarCNPJ should return false for CNPJ with less than 14 digits" name="validarCNPJ should return false for CNPJ with less than 14 digits" time="0.003">
+    </testcase>
+    <testcase classname="validarCNPJ should return false for CNPJ with more than 14 digits" name="validarCNPJ should return false for CNPJ with more than 14 digits" time="0.001">
+    </testcase>
+    <testcase classname="validarCNPJ should return false for CNPJ with all identical digits" name="validarCNPJ should return false for CNPJ with all identical digits" time="0.002">
+    </testcase>
+    <testcase classname="validarCNPJ should ignore non-digit characters" name="validarCNPJ should ignore non-digit characters" time="0.003">
+    </testcase>
+    <testcase classname="validaCPF should return false for empty string" name="validaCPF should return false for empty string" time="0.001">
+    </testcase>
+    <testcase classname="validaCPF should return false for CPF with less than 11 digits" name="validaCPF should return false for CPF with less than 11 digits" time="0.001">
+    </testcase>
+    <testcase classname="validaCPF should return false for CPF with more than 11 digits" name="validaCPF should return false for CPF with more than 11 digits" time="0.001">
+    </testcase>
+    <testcase classname="validaCPF should return false for CPF with all identical digits" name="validaCPF should return false for CPF with all identical digits" time="0.002">
+    </testcase>
+    <testcase classname="validaCPF should return true for valid CPF" name="validaCPF should return true for valid CPF" time="0.001">
+    </testcase>
+    <testcase classname="validaCPF should ignore non-digit characters" name="validaCPF should ignore non-digit characters" time="0.001">
+    </testcase>
+    <testcase classname="validaCPF should return false for invalid CPF" name="validaCPF should return false for invalid CPF" time="0">
+    </testcase>
+    <testcase classname="validarCPFouCNPJ should return true for valid CPF" name="validarCPFouCNPJ should return true for valid CPF" time="0.001">
+    </testcase>
+    <testcase classname="validarCPFouCNPJ should return true for valid CNPJ" name="validarCPFouCNPJ should return true for valid CNPJ" time="0.001">
+    </testcase>
+    <testcase classname="validarCPFouCNPJ should return error object for invalid CPF" name="validarCPFouCNPJ should return error object for invalid CPF" time="0.003">
+    </testcase>
+    <testcase classname="validarCPFouCNPJ should return error object for invalid CNPJ" name="validarCPFouCNPJ should return error object for invalid CNPJ" time="0.001">
+    </testcase>
+    <testcase classname="validarCPFouCNPJ should return error object for invalid length" name="validarCPFouCNPJ should return error object for invalid length" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="routes generation from swaggerDocs" errors="0" failures="0" skipped="0" timestamp="2025-05-14T20:32:28" time="8.452" tests="3">
+    <testcase classname="routes generation from swaggerDocs should generate correct routes array from swaggerDocs" name="routes generation from swaggerDocs should generate correct routes array from swaggerDocs" time="0.021">
+    </testcase>
+    <testcase classname="routes generation from swaggerDocs should replace path parameters with :paramName for path params" name="routes generation from swaggerDocs should replace path parameters with :paramName for path params" time="0.001">
+    </testcase>
+    <testcase classname="routes generation from swaggerDocs should not replace anything if there are no path params" name="routes generation from swaggerDocs should not replace anything if there are no path params" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="authenticateToken middleware" errors="0" failures="0" skipped="0" timestamp="2025-05-14T20:32:28" time="8.659" tests="5">
+    <testcase classname="authenticateToken middleware should return 401 if no token is provided" name="authenticateToken middleware should return 401 if no token is provided" time="0.012">
+    </testcase>
+    <testcase classname="authenticateToken middleware should return 401 if authorization header is malformed" name="authenticateToken middleware should return 401 if authorization header is malformed" time="0.001">
+    </testcase>
+    <testcase classname="authenticateToken middleware should call next and set req.user if token is valid" name="authenticateToken middleware should call next and set req.user if token is valid" time="0.001">
+    </testcase>
+    <testcase classname="authenticateToken middleware should return 403 if token is invalid or expired" name="authenticateToken middleware should return 403 if token is invalid or expired" time="0.002">
+    </testcase>
+    <testcase classname="authenticateToken middleware should use process.env.SECRET as secret" name="authenticateToken middleware should use process.env.SECRET as secret" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="respondWithCode" errors="0" failures="0" skipped="0" timestamp="2025-05-14T20:32:28" time="9.087" tests="8">
+    <testcase classname="respondWithCode should return an object with code and payload" name="respondWithCode should return an object with code and payload" time="0.01">
+    </testcase>
+    <testcase classname="writeJson should write JSON response with default code 200" name="writeJson should write JSON response with default code 200" time="0.002">
+    </testcase>
+    <testcase classname="writeJson should write JSON response with provided status code" name="writeJson should write JSON response with provided status code" time="0.001">
+    </testcase>
+    <testcase classname="writeJson should handle ResponsePayload instance as first argument" name="writeJson should handle ResponsePayload instance as first argument" time="0.001">
+    </testcase>
+    <testcase classname="writeJson should add API-OAUTH-METADATA-FOR-ACCESSTOKEN header if id_usuario is provided" name="writeJson should add API-OAUTH-METADATA-FOR-ACCESSTOKEN header if id_usuario is provided" time="0.001">
+    </testcase>
+    <testcase classname="writeJson should stringify non-object payloads as is" name="writeJson should stringify non-object payloads as is" time="0">
+    </testcase>
+    <testcase classname="writeJson should use arg1 as code if it is an integer" name="writeJson should use arg1 as code if it is an integer" time="0.001">
+    </testcase>
+    <testcase classname="returnResponse should return an object with response and statusCode" name="returnResponse should return an object with response and statusCode" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="app" errors="0" failures="0" skipped="0" timestamp="2025-05-14T20:32:28" time="9.293" tests="1">
+    <testcase classname="app should be an instance of express application" name="app should be an instance of express application" time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="loginController" errors="0" failures="0" skipped="0" timestamp="2025-05-14T20:32:28" time="10.181" tests="2">
+    <testcase classname="loginController should return validation error if login is missing" name="loginController should return validation error if login is missing" time="0.01">
+    </testcase>
+    <testcase classname="loginController should return validation error if password is missing" name="loginController should return validation error if password is missing" time="0.001">
+    </testcase>
+  </testsuite>
+</testsuites>
