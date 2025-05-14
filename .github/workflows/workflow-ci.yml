@@ -55,3 +55,4 @@ jobs:
   sonarqube:
     needs: docker
     uses: ./.github/workflows/build.yml
+    secrets: inherit
