@@ -3,8 +3,10 @@ import prettierPlugin from 'eslint-plugin-prettier';
 import tsParser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import globals from 'globals';
-
 export default [
+  {
+    ignores: ['dist/**', 'test/**'],
+  },
   {
     // Configuração base para JavaScript
     files: ['**/*.js'],
@@ -105,7 +107,7 @@ export default [
           format: ['camelCase', 'PascalCase', 'snake_case'],
         },
       ],
-      '@typescript-eslint/no-explicit-any': 'warn', // Mudei para warn ao invés de error
+      // '@typescript-eslint/no-explicit-any': 'warn', // Mudei para warn ao invés de error
       '@typescript-eslint/consistent-type-imports': 'error',
     },
   },

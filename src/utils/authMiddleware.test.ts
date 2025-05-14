@@ -1,6 +1,5 @@
 import { authenticateToken } from './authMiddleware';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import type { Request, Response, NextFunction } from 'express';
 
 jest.mock('jsonwebtoken');

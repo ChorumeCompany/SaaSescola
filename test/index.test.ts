@@ -1,5 +1,4 @@
 import { describe, it, expect, jest, beforeEach } from '@jest/globals';
-import * as path from 'node:path';
 import * as fs from 'node:fs';
 import jsyaml from 'js-yaml';
 
