@@ -14,13 +14,10 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - name: SonarQube Quality Gate
-        uses: SonarSource/sonarqube-quality-gate-action@v2
-        with:
-          projectKey: kaiquedfelipe08_apisaasescola
-          projectName: apisaasescola
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v4
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ secrets. SONARCLOUD_TOKEN }}
       - name: Run Jest Tests
         run: |
           npm ci
