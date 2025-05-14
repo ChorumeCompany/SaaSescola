@@ -18,7 +18,7 @@ export const authenticateToken = (
   }
 
   try {
-    const secret = process.env.SECRET as string;
+    const secret = process.env.SECRET;
     const decoded = jwt.verify(token, secret);
     (req as Request & { user?: unknown }).user = decoded;
     next();

@@ -73,14 +73,13 @@ routes.forEach(({ path, method, operationId, params }): void => {
       Array.isArray(params) &&
       params.some((param): boolean => param.in === 'path')
     ) {
+      let routePath = path;
       params.forEach((param): void => {
         if (param.in === 'path') {
-          const correctedPath = path.replace(
-            `{${param.name}}`,
-            `:${param.name}`,
-          );
+          routePath = routePath.replace(`{${param.name}}`, `:${param.name}`);
         }
       });
+      app[method as keyof Application](routePath, handler);
     } else {
       app[method as keyof Application](path, handler);
     }

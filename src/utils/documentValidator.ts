@@ -1,4 +1,4 @@
-function validaCPF(cpf): boolean {
+export function validaCPF(cpf): boolean {
   const cpfLimpo = cpf.replace(/\D/g, '');
 
   const nums = cpfLimpo.split('').map((num) => parseInt(num));
@@ -25,7 +25,7 @@ function validaCPF(cpf): boolean {
   return resto1 === nums[9] && resto2 === nums[10];
 }
 
-function validarCNPJ(cnpj: string): boolean {
+export function validarCNPJ(cnpj: string): boolean {
   cnpj = cnpj.replace(/[^\d]+/g, '');
 
   if (cnpj === '') return false;
