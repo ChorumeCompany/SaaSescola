@@ -17,10 +17,18 @@ jobs:
       - name: Run Jest Tests with coverage
         run: npm run test:coverage
 
+      - name: Verify Coverage
+        run: |
+          echo "Verificando arquivo LCOV:"
+          cat coverage/lcov.info
+          echo "Arquivos cobertos:"
+          grep -c "SF:" coverage/lcov.info
+
       - name: Configure SonarQube
         run: |
           echo "sonar.typescript.lcov.reportPaths=coverage/lcov.info" >> sonar-project.properties
-          echo "sonar.testExecutionReportPaths=test-report.json" >> sonar-project.properties
+          echo "sonar.javascript.lcov.reportPaths=coverage/lcov.info" >> sonar-project.properties
+          echo "sonar.coverage.exclusions=**/node_modules/**,**/test/**" >> sonar-project.properties
 
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5

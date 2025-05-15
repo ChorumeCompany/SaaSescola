@@ -60,7 +60,8 @@
     "prettier:write": "prettier --write .",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --json --outputFile=test-report.json"
+    "test:coverage": "jest --coverage --collectCoverageFrom='src/**/*.{js,jsx,ts,tsx}' --coverageDirectory=coverage --coverageReporters=lcov",
+    "fix:coverage": "sed -i 's/\\\\\\\\/\\//g' coverage/lcov.info"
   },
   "version": "1.0.0"
 }

@@ -1,12 +1,18 @@
-// filepath: c:\Users\Kaique\Documents\GitHub\SaaSescola\jest.config.js
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  testMatch: ['**/test/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[tj]s?(x)'],
-  moduleFileExtensions: ['ts', 'js', 'json', 'node'],
   collectCoverage: true,
   coverageDirectory: 'coverage',
-  coverageReporters: ['lcov', 'text'],
+  coverageReporters: ['lcov', 'text', 'clover'],
+  collectCoverageFrom: [
+    'src/**/*.{ts,js}',
+    '!**/node_modules/**',
+    '!**/test/**',
+    '!**/__mocks__/**',
+  ],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  testMatch: ['**/test/**/*.test.ts'],
+  modulePaths: ['<rootDir>/src'],
   reporters: [
     'default',
     [
@@ -14,11 +20,6 @@ module.exports = {
       {
         outputDirectory: 'test-results',
         outputName: 'test-report.xml',
-        ancestorSeparator: ' › ',
-        uniqueOutputName: 'false',
-        suiteNameTemplate: '{filename}',
-        classNameTemplate: '{classname}',
-        titleTemplate: '{title}',
       },
     ],
   ],
