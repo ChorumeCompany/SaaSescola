@@ -17,7 +17,7 @@ jobs:
       - name: Run Jest Tests
         run: |
           npm ci
-          npm run test -- --coverage
+          npm run test:coverage
       - name: Upload coverage to SonarQube
         run: |
           echo "sonar.javascript.lcov.reportPaths=coverage/lcov.info" >> sonar-project.properties
