@@ -31,6 +31,6 @@ jobs:
           echo "sonar.coverage.exclusions=**/node_modules/**,**/test/**" >> sonar-project.properties
 
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: SonarSource/sonarqube-scan-action@v4
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
