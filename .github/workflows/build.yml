@@ -10,14 +10,19 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Jest Tests with coverage
+        run: npm run test:coverage
+
+      - name: Configure SonarQube
+        run: |
+          echo "sonar.typescript.lcov.reportPaths=coverage/lcov.info" >> sonar-project.properties
+          echo "sonar.testExecutionReportPaths=test-report.xml" >> sonar-project.properties
+
       - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - name: Run Jest Tests
-        run: |
-          npm ci
-          npm run test:coverage
-      - name: Upload coverage to SonarQube
-        run: |
-          echo "sonar.javascript.lcov.reportPaths=coverage/lcov.info" >> sonar-project.properties
