@@ -11,6 +11,7 @@
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.15.5",
     "postgres": "^3.4.5",
+    "rabbitmq-stream-js-client": "^0.6.1",
     "saas-escolas": "file:",
     "sequelize": "^6.37.7",
     "sequelize-typescript": "^2.1.6",

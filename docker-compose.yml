@@ -17,15 +17,37 @@ services:
     networks:
       escola_network:
 
+  rabbitmq:
+    image: rabbitmq:4-management
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: '-rabbitmq_stream advertised_host rabbitmq'
+    ports:
+      - '5552:5552'
+      - '15672:15672'
+      - '5672:5672'
+    healthcheck:
+      test: ['CMD', 'rabbitmqctl', 'status']
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    networks:
+      escola_network:
+    # Comando para habilitar os plugins após o container iniciar
+    command: sh -c "rabbitmq-plugins enable rabbitmq_stream rabbitmq_stream_management && rabbitmq-server"
+
   saasescola:
     image: kaiquedfelipe08/saasescola
     container_name: saasescola
     environment:
       DATABASE_URL: ${DATABASE_URL}
+      RABBITMQ_HOST: ${RABBITMQ_HOST}
     ports:
       - '3000:3000'
     depends_on:
       db:
+        condition: service_healthy
+      rabbitmq:
         condition: service_healthy
     networks:
       escola_network:

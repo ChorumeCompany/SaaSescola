@@ -136,5 +136,7 @@ src/config
 .idea
 /dist
 dockerrun.txt
-/test-results
+test-results
 junit.xml
+.sonarlint
+.vscode
